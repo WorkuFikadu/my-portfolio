@@ -45,9 +45,75 @@ export const personalData = {
 
   services: [
     {
+      id: "mobile-development",
+      title: "Mobile App Development (Android & iOS)",
+      category: "Software Engineering",
+      description: "Building cross-platform and native mobile apps with smooth 60fps animations, intuitive touch UX, and offline synchronization using Flutter, Dart, React Native, and Kotlin.",
+      deliverables: [
+        "Native Android & Cross-Platform iOS applications",
+        "Offline-first local storage & cloud data syncing",
+        "Push notifications, geolocation & hardware sensors",
+        "Google Play Store & Apple App Store readiness"
+      ],
+      icon: "Smartphone"
+    },
+    {
+      id: "erp-systems",
+      title: "Enterprise Resource Planning (ERP)",
+      category: "Enterprise Systems",
+      description: "Custom ERP and business process automation solutions tailored for growing Ethiopian companies and institutions to unify inventory, payroll, accounting, and supply chain.",
+      deliverables: [
+        "Inventory management & multi-warehouse tracking",
+        "Human resource (HR), staff attendance & payroll modules",
+        "Financial reporting, invoicing & ledger tracking",
+        "Role-based access control & executive analytics dashboards"
+      ],
+      icon: "Layers"
+    },
+    {
+      id: "ecommerce-solutions",
+      title: "E-Commerce Platforms & Digital Payments",
+      category: "Commercial Tech",
+      description: "High-converting online shopping platforms, digital storefronts, and customer portals integrated with local payment systems (Telebirr, CBE Birr) and international cards.",
+      deliverables: [
+        "Custom product catalogs, shopping carts & checkout funnels",
+        "Automated Ethiopian payment gateway integration (Telebirr / CBE)",
+        "Customer order tracking, SMS receipts & email alerts",
+        "Merchant inventory management & sales analytics"
+      ],
+      icon: "ShoppingCart"
+    },
+    {
+      id: "cybersecurity-auditing",
+      title: "Cybersecurity, Auditing & Data Protection",
+      category: "Security & Infrastructure",
+      description: "Securing modern web and mobile architectures from vulnerabilities, implementing encrypted communications, authentication hardening, and data privacy safeguards.",
+      deliverables: [
+        "Vulnerability assessments & penetration testing (OWASP Top 10)",
+        "JWT, OAuth2 & multi-factor authentication (MFA) hardening",
+        "Database encryption at rest & TLS/SSL transport security",
+        "Security compliance reviews & incident prevention strategies"
+      ],
+      icon: "Lock"
+    },
+    {
+      id: "tech-consultancy",
+      title: "Tech Solutions & Business Consultancy",
+      category: "Consultancy & Strategy",
+      description: "Strategic technology advising for startups and established businesses: helping companies choose the right tech stack, modernize legacy software, and optimize development ROI.",
+      deliverables: [
+        "Digital transformation roadmaps for traditional businesses",
+        "Startup MVP scoping, architecture blueprints & cost optimization",
+        "Cloud migration (AWS, Vercel, Firebase) & DevOps setup",
+        "Engineering team workflow audits & Agile/Scrum best practices"
+      ],
+      icon: "Briefcase"
+    },
+    {
       id: "fullstack-web",
       title: "Full-Stack Web Development",
-      description: "End-to-end web applications engineered with React.js, Next.js, Node.js, and Express. Delivering responsive user experiences, secure authentication (JWT), and robust server APIs.",
+      category: "Software Engineering",
+      description: "End-to-end web applications engineered with React.js, Next.js, Node.js, and Express. Delivering responsive user experiences, secure authentication, and robust server APIs.",
       deliverables: [
         "Interactive SPA & SSR web apps",
         "Secure RESTful APIs & Microservices",
@@ -57,32 +123,9 @@ export const personalData = {
       icon: "Globe"
     },
     {
-      id: "mobile-development",
-      title: "Cross-Platform Mobile Apps",
-      description: "Developing smooth, native-performance applications for iOS and Android using Flutter and React Native from a single clean codebase.",
-      deliverables: [
-        "Custom, fluid 60fps mobile interfaces",
-        "Offline-first architecture & state syncing",
-        "Push notifications & hardware integration",
-        "App Store & Google Play deployment readiness"
-      ],
-      icon: "Smartphone"
-    },
-    {
-      id: "database-cloud",
-      title: "Database Architecture & Backend Systems",
-      description: "Architecting high-concurrency relational and NoSQL databases designed for rapid queries, data integrity, and zero race conditions.",
-      deliverables: [
-        "MySQL & PostgreSQL relational schema design",
-        "MongoDB aggregations & high-speed querying",
-        "ACID-compliant transaction management",
-        "Cloud database setup & automated backups"
-      ],
-      icon: "Database"
-    },
-    {
       id: "ict-digitization",
-      title: "Public & Enterprise ICT Digitization",
+      title: "Public & Municipal ICT Digitization",
+      category: "Public Sector Tech",
       description: "Designing large-scale administrative software to streamline public services, citizen databases, and academic institutions (proven by Bosa Addis Kebele Management System).",
       deliverables: [
         "Role-based administrative dashboards",
@@ -93,8 +136,22 @@ export const personalData = {
       icon: "ShieldCheck"
     },
     {
+      id: "database-cloud",
+      title: "Database Architecture & Backend Engineering",
+      category: "Software Engineering",
+      description: "Architecting high-concurrency relational and NoSQL databases designed for rapid queries, data integrity, and zero race conditions.",
+      deliverables: [
+        "MySQL & PostgreSQL relational schema design",
+        "MongoDB aggregations & high-speed querying",
+        "ACID-compliant transaction management",
+        "Cloud database setup & automated backups"
+      ],
+      icon: "Database"
+    },
+    {
       id: "tech-leadership",
-      title: "Technical Team Leadership & Consultation",
+      title: "Technical Team Leadership & Sprint Delivery",
+      category: "Consultancy & Strategy",
       description: "Guiding engineering squads through sprint planning, architecture roadmaps, code quality standards, and technical mentorship as practiced at Goldman Tech PLC.",
       deliverables: [
         "Agile sprint management & task breakdown",
@@ -103,18 +160,6 @@ export const personalData = {
         "Mentorship for junior and mid-level engineers"
       ],
       icon: "Users"
-    },
-    {
-      id: "api-integration",
-      title: "API Design & Financial System Simulation",
-      description: "Engineering resilient third-party integrations, payment flows (Telebirr/Fintech simulations), and external gateway connections with high security standards.",
-      deliverables: [
-        "P2P transfers & digital wallet lifecycles",
-        "Secure webhooks & payment gateway hooks",
-        "Swagger / Postman API documentation",
-        "High-throughput concurrency handling"
-      ],
-      icon: "Terminal"
     }
   ],
 

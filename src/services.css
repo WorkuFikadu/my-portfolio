@@ -59,6 +59,25 @@
   color: var(--text-dim);
 }
 
+.service-category-badge {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 0.2rem 0.65rem;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  color: #93c5fd;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.04em;
+}
+
+.text-rose {
+  color: #f43f5e;
+}
+
 .service-title {
   font-size: 1.35rem;
   margin-bottom: 0.8rem;
