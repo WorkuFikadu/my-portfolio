@@ -7,6 +7,7 @@ import {
   CheckCircle2, ArrowRight, Sparkles, MessageSquare, GraduationCap 
 } from 'lucide-react';
 import TiltCard from '../components/TiltCard';
+import TechSolutionsShowcase from '../components/TechSolutionsShowcase';
 
 export default function ServicesPage() {
   const { services } = personalData;
@@ -99,6 +100,23 @@ export default function ServicesPage() {
                 </div>
               </TiltCard>
             ))}
+          </div>
+
+          {/* Interactive Tech Architecture Showcase */}
+          <div className="mt-16 mb-12">
+            <div className="section-header text-center mb-6">
+              <div className="badge-chip">
+                <Sparkles size={16} />
+                <span>End-to-End System Integration</span>
+              </div>
+              <h2 className="section-title">
+                How We <span className="gradient-text">Architect Your Solutions</span>
+              </h2>
+              <p className="section-subtitle">
+                A transparent, zero-trust engineering methodology ensuring every app, ERP, and database is secure, performant, and resilient.
+              </p>
+            </div>
+            <TechSolutionsShowcase />
           </div>
 
           {/* Call to Action Banner */}

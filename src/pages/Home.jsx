@@ -6,6 +6,7 @@ import TiltCard from '../components/TiltCard';
 import TypewriterText from '../components/TypewriterText';
 import InstallAppBtn from '../components/InstallAppBtn';
 import ResumeModal from '../components/ResumeModal';
+import TechSolutionsShowcase from '../components/TechSolutionsShowcase';
 
 export default function Home() {
   return (
@@ -137,6 +138,26 @@ export default function Home() {
 console.log('🚀 Ready to build impactful software together.');`}</code></pre>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Animated Tech Solutions Showcase Section */}
+      <section className="section-padding tech-solutions-section">
+        <div className="container">
+          <div className="section-header text-center">
+            <div className="badge-chip">
+              <Sparkles size={16} />
+              <span>Full-Stack Engineering Lifecycle</span>
+            </div>
+            <h2 className="section-title">
+              Interactive <span className="gradient-text">Tech Solutions</span> Architecture
+            </h2>
+            <p className="section-subtitle">
+              Visualizing how Worku engineers end-to-end solutions: from cross-platform mobile & web apps to resilient APIs, ERP engines, cloud databases, and zero-trust security.
+            </p>
+          </div>
+
+          <TechSolutionsShowcase />
         </div>
       </section>
     </div>
