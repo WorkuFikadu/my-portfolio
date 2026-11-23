@@ -4,6 +4,7 @@ import { personalData } from '../portfolioData';
 import { ArrowRight, Code2, Globe, ShieldCheck, Award, Send, CheckCircle2, Terminal, Sparkles, Rocket } from 'lucide-react';
 import TiltCard from '../components/TiltCard';
 import TypewriterText from '../components/TypewriterText';
+import InstallAppBtn from '../components/InstallAppBtn';
 
 export default function Home() {
   return (
@@ -48,6 +49,7 @@ export default function Home() {
                 <Send size={18} />
                 <span>Contact Worku</span>
               </Link>
+              <InstallAppBtn className="hero-app-btn" />
             </div>
 
             {/* Quick Metrics */}

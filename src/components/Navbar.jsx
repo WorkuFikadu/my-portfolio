@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { personalData } from '../portfolioData';
 import { Menu, X, Sparkles, Code2 } from 'lucide-react';
+import InstallAppBtn from './InstallAppBtn';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -69,6 +70,7 @@ export default function Navbar() {
 
         {/* Action Button */}
         <div className="nav-actions">
+          <InstallAppBtn />
           <Link to="/contact" className="btn btn-primary btn-sm pulse-hover">
             <span>Hire Me</span>
             <Sparkles size={15} />

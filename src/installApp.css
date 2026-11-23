@@ -1,0 +1,98 @@
+/* Install App Button Styles */
+.btn-install-app {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: rgba(18, 24, 38, 0.85);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: var(--transition);
+  color: #ffffff;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+.btn-install-app:hover {
+  border-color: rgba(59, 130, 246, 0.8);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+  transform: translateY(-2px);
+}
+
+.install-icon-wrapper {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #090d16;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.app-download-icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.install-text-wrap {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.install-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #f8fafc;
+}
+
+.install-sub {
+  font-size: 0.65rem;
+  color: var(--accent-cyan);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.install-dl-arrow {
+  color: var(--primary);
+  animation: bounceDown 2s infinite ease-in-out;
+}
+
+@keyframes bounceDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(3px); }
+}
+
+.hero-app-btn {
+  padding: 0.75rem 1.4rem;
+}
+
+.hero-app-btn .install-icon-wrapper {
+  width: 32px;
+  height: 32px;
+}
+
+.hero-app-btn .install-label {
+  font-size: 0.9rem;
+}
+
+.hero-app-btn .install-sub {
+  font-size: 0.72rem;
+}
+
+@media (max-width: 600px) {
+  .btn-install-app {
+    padding: 0.35rem 0.75rem;
+  }
+  
+  .install-sub {
+    display: none;
+  }
+}

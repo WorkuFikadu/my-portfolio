@@ -1,0 +1,17 @@
+{
+  "name": "Worku Fikadu Portfolio",
+  "short_name": "Worku Portfolio",
+  "description": "Professional Full-Stack Developer & Technical Team Leader Portfolio",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0a0e17",
+  "theme_color": "#3b82f6",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
