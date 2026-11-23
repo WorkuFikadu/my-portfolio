@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ParticleBackground from './components/ParticleBackground';
+import CursorGlow from './components/CursorGlow';
 
 // Pages
 import Home from './pages/Home';
@@ -17,7 +18,9 @@ import ContactPage from './pages/ContactPage';
 function App() {
   return (
     <div className="portfolio-app">
+      <CursorGlow />
       <ParticleBackground />
+      <div className="cyber-grid-overlay"></div>
       <Navbar />
       <main className="main-content-flow">
         <Routes>

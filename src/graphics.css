@@ -1,0 +1,133 @@
+/* ==========================================================================
+   ADVANCED GRAPHICS & DYNAMIC ANIMATIONS
+   ========================================================================== */
+
+/* 1. Cursor Glow Halo */
+.cursor-glow-halo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.16) 0%, rgba(139, 92, 246, 0.08) 45%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999;
+  filter: blur(25px);
+  will-change: transform;
+  transition: opacity 0.3s ease;
+}
+
+/* 2. Cyber Matrix Grid Background Overlay */
+.cyber-grid-overlay {
+  position: fixed;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.8;
+}
+
+/* 3. Typewriter Dynamic Text */
+.typewriter-dynamic-text {
+  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #f472b6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  margin-left: 2px;
+  color: #38bdf8;
+  font-weight: 300;
+  animation: blinkCursor 0.8s infinite;
+}
+
+@keyframes blinkCursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* 4. Animated Neon Glowing Borders */
+.animated-glow-border {
+  position: relative;
+  background: rgba(18, 24, 38, 0.8);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
+  transition: all 0.3s ease;
+}
+
+.animated-glow-border:hover {
+  border-color: rgba(245, 158, 11, 0.8);
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.45);
+  transform: translateY(-2px);
+}
+
+.neon-image-border {
+  position: relative;
+  border: 2px solid rgba(59, 130, 246, 0.4) !important;
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.25), 0 0 40px rgba(139, 92, 246, 0.15) !important;
+  transition: all 0.5s ease;
+}
+
+.neon-image-border:hover {
+  border-color: rgba(59, 130, 246, 0.8) !important;
+  box-shadow: 0 15px 45px rgba(59, 130, 246, 0.45), 0 0 60px rgba(139, 92, 246, 0.3) !important;
+}
+
+/* 5. 3D Tilt Card Wrapper */
+.tilt-card-wrapper {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* 6. Glowing Shimmer on Glass Cards */
+.card-glass {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-glass::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.03) 50%,
+    transparent 60%
+  );
+  transform: rotate(30deg);
+  pointer-events: none;
+  animation: cardShimmer 8s infinite linear;
+}
+
+@keyframes cardShimmer {
+  0% { transform: translateY(-100%) rotate(30deg); }
+  100% { transform: translateY(100%) rotate(30deg); }
+}
+
+/* 7. Hover Pulsing and Badge Micro-interactions */
+.certificate-card:hover {
+  border-color: rgba(59, 130, 246, 0.6) !important;
+  box-shadow: 0 12px 35px rgba(59, 130, 246, 0.25) !important;
+}
+
+.project-card:hover {
+  border-color: rgba(6, 182, 212, 0.6) !important;
+  box-shadow: 0 12px 35px rgba(6, 182, 212, 0.2) !important;
+}
+
+.tech-badge:hover {
+  background: rgba(59, 130, 246, 0.2);
+  color: #ffffff;
+  transform: translateY(-2px);
+}

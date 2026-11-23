@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { personalData } from '../portfolioData';
-import { ArrowRight, Code2, Globe, ShieldCheck, Award, Send, CheckCircle2, Terminal } from 'lucide-react';
+import { ArrowRight, Code2, Globe, ShieldCheck, Award, Send, CheckCircle2, Terminal, Sparkles, Rocket } from 'lucide-react';
+import TiltCard from '../components/TiltCard';
+import TypewriterText from '../components/TypewriterText';
 
 export default function Home() {
   return (
@@ -20,8 +22,10 @@ export default function Home() {
             </h1>
 
             <div className="hero-role-block">
-              <p className="hero-subtitle">{personalData.title}</p>
-              <div className="role-company-tag">
+              <p className="hero-subtitle">
+                <TypewriterText />
+              </p>
+              <div className="role-company-tag animated-glow-border">
                 <ShieldCheck size={18} className="role-icon" />
                 <span>{personalData.roleTitle}</span>
               </div>
@@ -69,8 +73,8 @@ export default function Home() {
 
           {/* Hero Visual Card with Interactive Code snippet */}
           <div className="hero-visual-wrap">
-            <div className="hero-portrait-card">
-              <div className="portrait-image-wrapper">
+            <TiltCard className="hero-portrait-card">
+              <div className="portrait-image-wrapper neon-image-border">
                 <img 
                   src="/images/profile-portrait.jpg" 
                   alt={`${personalData.name} Portrait`} 
@@ -98,7 +102,7 @@ export default function Home() {
                   <div className="floating-sub">Afan Oromo · Amharic · English · Arabic</div>
                 </div>
               </div>
-            </div>
+            </TiltCard>
           </div>
         </div>
       </section>
