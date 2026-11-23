@@ -43,6 +43,81 @@ export const personalData = {
     "Fostering a connected tech community where talent and opportunity meet."
   ],
 
+  services: [
+    {
+      id: "fullstack-web",
+      title: "Full-Stack Web Development",
+      description: "End-to-end web applications engineered with React.js, Next.js, Node.js, and Express. Delivering responsive user experiences, secure authentication (JWT), and robust server APIs.",
+      deliverables: [
+        "Interactive SPA & SSR web apps",
+        "Secure RESTful APIs & Microservices",
+        "Modern CSS3, Animations & Glassmorphism UI",
+        "State management (Redux, Context API)"
+      ],
+      icon: "Globe"
+    },
+    {
+      id: "mobile-development",
+      title: "Cross-Platform Mobile Apps",
+      description: "Developing smooth, native-performance applications for iOS and Android using Flutter and React Native from a single clean codebase.",
+      deliverables: [
+        "Custom, fluid 60fps mobile interfaces",
+        "Offline-first architecture & state syncing",
+        "Push notifications & hardware integration",
+        "App Store & Google Play deployment readiness"
+      ],
+      icon: "Smartphone"
+    },
+    {
+      id: "database-cloud",
+      title: "Database Architecture & Backend Systems",
+      description: "Architecting high-concurrency relational and NoSQL databases designed for rapid queries, data integrity, and zero race conditions.",
+      deliverables: [
+        "MySQL & PostgreSQL relational schema design",
+        "MongoDB aggregations & high-speed querying",
+        "ACID-compliant transaction management",
+        "Cloud database setup & automated backups"
+      ],
+      icon: "Database"
+    },
+    {
+      id: "ict-digitization",
+      title: "Public & Enterprise ICT Digitization",
+      description: "Designing large-scale administrative software to streamline public services, citizen databases, and academic institutions (proven by Bosa Addis Kebele Management System).",
+      deliverables: [
+        "Role-based administrative dashboards",
+        "National ID & resident database integration",
+        "Automated record tracking & reporting",
+        "System security & access control audits"
+      ],
+      icon: "ShieldCheck"
+    },
+    {
+      id: "tech-leadership",
+      title: "Technical Team Leadership & Consultation",
+      description: "Guiding engineering squads through sprint planning, architecture roadmaps, code quality standards, and technical mentorship as practiced at Goldman Tech PLC.",
+      deliverables: [
+        "Agile sprint management & task breakdown",
+        "Code reviews & architecture consultations",
+        "System scalability & performance profiling",
+        "Mentorship for junior and mid-level engineers"
+      ],
+      icon: "Users"
+    },
+    {
+      id: "api-integration",
+      title: "API Design & Financial System Simulation",
+      description: "Engineering resilient third-party integrations, payment flows (Telebirr/Fintech simulations), and external gateway connections with high security standards.",
+      deliverables: [
+        "P2P transfers & digital wallet lifecycles",
+        "Secure webhooks & payment gateway hooks",
+        "Swagger / Postman API documentation",
+        "High-throughput concurrency handling"
+      ],
+      icon: "Terminal"
+    }
+  ],
+
   story: {
     intro: "Born on April 14, 2003, in the Oromia region of Ethiopia, my educational journey began in Goro before moving to Addis Ababa, where I attended Gara Guri Elementary School founded by Sheik Hamdan Binu Rashid Al Maktoum.",
     multilingual: "Gara Guri provided a remarkable multilingual curriculum across four languages: Afan Oromo, Amharic, English, and Arabic. This early linguistic exposure sharpened my cognitive adaptability and cultural agility.",

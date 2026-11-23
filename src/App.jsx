@@ -8,6 +8,7 @@ import CursorGlow from './components/CursorGlow';
 // Pages
 import Home from './pages/Home';
 import AboutPage from './pages/AboutPage';
+import ServicesPage from './pages/ServicesPage';
 import LeadershipPage from './pages/LeadershipPage';
 import CertificatesPage from './pages/CertificatesPage';
 import SkillsPage from './pages/SkillsPage';
@@ -26,6 +27,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/services" element={<ServicesPage />} />
           <Route path="/leadership" element={<LeadershipPage />} />
           <Route path="/certificates" element={<CertificatesPage />} />
           <Route path="/skills" element={<SkillsPage />} />
