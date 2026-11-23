@@ -6,11 +6,13 @@ import {
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon, InstagramIcon } from './SocialIcons';
 import { fireConfetti } from '../utils/confetti';
+import { sanitizeInput, checkRateLimit } from '../utils/security';
 
 export default function Contact() {
   const { contact, business } = personalData;
   const [copied, setCopied] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -37,6 +39,25 @@ TikTok: @worku_goldman`;
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // 1. Rate limiting check (Anti-spam / Anti-DDoS)
+    if (!checkRateLimit(3, 60000)) {
+      setErrorMsg('Too many messages sent. Please wait a minute before trying again.');
+      return;
+    }
+
+    // 2. Strict Input Sanitization
+    const sanitizedName = sanitizeInput(formData.name);
+    const sanitizedEmail = sanitizeInput(formData.email);
+    const sanitizedSubject = sanitizeInput(formData.subject);
+    const sanitizedMessage = sanitizeInput(formData.message);
+
+    if (!sanitizedName || !sanitizedEmail || !sanitizedMessage) {
+      setErrorMsg('Invalid input detected. Please provide valid text without HTML tags.');
+      return;
+    }
+
+    setErrorMsg('');
     setSubmitted(true);
     fireConfetti();
     setTimeout(() => {
@@ -193,6 +214,12 @@ TikTok: @worku_goldman`;
             <div className="form-card card-glass">
               <h3>Send a Message</h3>
               <p>Have an inquiry or collaboration proposal? Send a direct note.</p>
+
+              {errorMsg && (
+                <div className="security-alert-box">
+                  <span>⚠️ {errorMsg}</span>
+                </div>
+              )}
 
               {submitted ? (
                 <div className="success-banner">

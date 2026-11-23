@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { personalData } from '../portfolioData';
 import { Bot, X, Send, Sparkles, User, Briefcase, Award, Code, Phone, ShieldCheck } from 'lucide-react';
+import { sanitizeInput } from '../utils/security';
 
 export default function AiAssistant() {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +21,8 @@ export default function AiAssistant() {
   ];
 
   const handleSend = (userText) => {
-    const textToSend = userText || input;
+    const raw = userText || input;
+    const textToSend = sanitizeInput(raw);
     if (!textToSend.trim()) return;
 
     const newMessages = [...messages, { sender: 'user', text: textToSend }];
