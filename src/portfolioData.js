@@ -186,58 +186,122 @@ export const personalData = {
 
   projects: [
     {
-      id: "bosa-addis",
-      title: "Bosa Addis Kebele Management System",
-      category: "Full-Stack & Government Systems",
-      description: "A comprehensive digital public administration and academic/resident record system aimed at digitizing student/citizen data, course registrations, and National ID verification.",
+      id: "pdms",
+      title: "Ethiopian National Patient Data Management System (NPDMS)",
+      category: "Healthcare & Digital ID",
+      description: "A nationwide healthcare record platform developed for the Ministry of Health, integrating Ethiopia's Fayda National Digital ID with medical histories, patient demographics, and clinical records.",
       features: [
-        "Secure role-based authentication (JWT) for admins, staff, and citizens",
-        "Dynamic administrative analytics dashboard for governance oversight",
-        "Relational schema linking national IDs with community records efficiently"
+        "Fayda National Digital ID biometric & ID verification integration",
+        "Role-based healthcare worker portals (Doctors, Pharmacists, Admins)",
+        "Secure medical record encryption & real-time diagnostic retrieval"
       ],
-      techStack: ["Node.js", "React.js", "MySQL", "Express.js", "JWT"],
-      demoUrl: "https://workufikadu.github.io/my-portfolio/projects.html",
-      githubUrl: "https://github.com/WorkuFikadu"
+      techStack: ["Node.js", "React.js", "JavaScript", "Express", "REST APIs"],
+      githubUrl: "https://github.com/WorkuFikadu/PDMS"
     },
     {
-      id: "vnme-platform",
-      title: "VNME Virtual Platform & Financial Simulator",
-      category: "Fintech & Virtual Systems",
-      description: "A simulated high-concurrency digital payment platform inspired by Ethiopian financial ecosystems (like Telebirr), demonstrating transaction lifecycles and real-time wallet operations.",
+      id: "bosa-addis",
+      title: "Bosa Addis Kebele Resident Data Management System",
+      category: "Government ICT & Records",
+      description: "A comprehensive digital public administration platform replacing paper-based records with centralized resident management, certificate issuance, and National ID harmonization.",
+      features: [
+        "Secure JWT authentication and administrative session management",
+        "Resident profile indexing and family record linking",
+        "Dynamic analytics dashboard for municipal governance oversight"
+      ],
+      techStack: ["PHP", "MySQL", "JavaScript", "Bootstrap", "REST API"],
+      demoUrl: "https://workufikadu.github.io/my-portfolio/#/projects",
+      githubUrl: "https://github.com/WorkuFikadu/bosa-addis-ketema-kebele-management-system"
+    },
+    {
+      id: "cbe-digital-banking",
+      title: "CBE Digital Banking Simulator",
+      category: "Fintech & Banking",
+      description: "A high-fidelity digital banking platform inspired by Commercial Bank of Ethiopia (CBE) and Telebirr financial ecosystems, demonstrating transaction lifecycles and concurrency handling.",
       features: [
         "Full digital wallet capabilities: deposits, withdrawals, and P2P transfers",
-        "ACID-compliant backend logic preventing race conditions & double-spending",
-        "Real-time balance aggregation and audit logs via MongoDB pipeline"
+        "ACID-compliant backend preventing race conditions and double spending",
+        "Real-time balance tracking, account statements, and transfer audits"
       ],
-      techStack: ["React.js", "Node.js", "MongoDB", "Mongoose", "REST APIs"],
-      demoUrl: "https://workufikadu.github.io/my-portfolio/projects.html",
-      githubUrl: "https://github.com/WorkuFikadu"
+      techStack: ["JavaScript", "Node.js", "Express", "REST APIs", "Modern CSS"],
+      githubUrl: "https://github.com/WorkuFikadu/cbe-digital-banking"
     },
     {
-      id: "job-matching",
-      title: "Intelligent Job Matching Platform",
-      category: "Career & Matching Algorithms",
-      description: "Bridging the Ethiopian employment gap by matching skilled youth and university graduates with verified corporate and startup opportunities.",
+      id: "busa-gonofa-oromia",
+      title: "Busa Gonofa Oromia Enterprise Platform",
+      category: "Enterprise & Humanitarian",
+      description: "A dedicated institutional management and distribution platform built for Busa Gonofa Oromia to coordinate resource allocation, disaster risk management, and community assistance programs.",
       features: [
-        "Dual portal architecture: streamlined CV upload for candidates & employer vacancy manager",
-        "Custom heuristic search and skill matching algorithms",
-        "High-throughput RESTful backend delivering millisecond response times"
+        "Strict TypeScript typing with scalable modular architecture",
+        "Resource inventory tracking and automated distribution logistics",
+        "Multi-tiered regional reporting dashboards"
       ],
-      techStack: ["React.js", "Node.js", "Express", "REST APIs", "Modern CSS"],
-      githubUrl: "https://github.com/WorkuFikadu"
+      techStack: ["TypeScript", "React.js", "Node.js", "TailwindCSS"],
+      githubUrl: "https://github.com/WorkuFikadu/busa-gonofa-oromia"
     },
     {
-      id: "cross-platform-mobile",
-      title: "Enterprise Mobile Solution",
+      id: "first-mobile-app",
+      title: "Native Android App (Jetpack Compose & Material 3)",
       category: "Mobile Application",
-      description: "A responsive, intuitive cross-platform mobile application targeting both Android and iOS devices from a unified, battery-efficient codebase.",
+      description: "A sleek modern native Android application built with Kotlin, Jetpack Compose declarative UI, and Google's Material You (Material 3) design language.",
       features: [
-        "Touch-optimized UI with fluid 60fps micro-interactions",
-        "Robust offline-first state synchronization and reactive state management",
-        "Reduced bundle size and optimized background battery consumption"
+        "Declarative reactive UI utilizing Jetpack Compose state flows",
+        "Smooth Material 3 adaptive color themes and fluid animations",
+        "Clean architecture pattern following MVVM and Kotlin Coroutines"
       ],
-      techStack: ["Flutter", "Dart", "React Native", "Mobile UX"],
-      githubUrl: "https://github.com/WorkuFikadu"
+      techStack: ["Kotlin", "Jetpack Compose", "Material 3", "Android SDK"],
+      githubUrl: "https://github.com/WorkuFikadu/first-mobile-app"
+    },
+    {
+      id: "flutter-lab-class",
+      title: "Cross-Platform Flutter Mobile Suite",
+      category: "Mobile Application",
+      description: "A comprehensive cross-platform mobile application suite built with Flutter and Dart, showcasing reactive state management, asynchronous streams, and smooth touch-optimized UX.",
+      features: [
+        "Unified codebase targeting both Android and iOS devices",
+        "State management using Provider / BLoC pattern",
+        "Optimized 60fps animations and low battery consumption"
+      ],
+      techStack: ["Flutter", "Dart", "Cross-Platform", "Mobile UX"],
+      githubUrl: "https://github.com/WorkuFikadu/Flutter_lab_class"
+    },
+    {
+      id: "ifa-bula-kebele",
+      title: "Ifa Bula Kebele Administration System",
+      category: "Public Sector Digitization",
+      description: "A localized digital administration portal for community management, public service requests, and record verification in Ifa Bula Kebele.",
+      features: [
+        "Citizen registration and verification workflows",
+        "Community noticeboard and request ticketing system",
+        "Administrative authorization controls"
+      ],
+      techStack: ["JavaScript", "Full-Stack", "REST APIs"],
+      githubUrl: "https://github.com/WorkuFikadu/ifa-bula-kebele-management"
+    },
+    {
+      id: "church-website",
+      title: "Jimma Hiwot Berhan Church Website",
+      category: "Web Portal & Community",
+      description: "A dedicated web portal for the Jimma Hiwot Berhan community, delivering media broadcasting, sermon archives, event schedules, and online announcements.",
+      features: [
+        "Responsive media player and sermon archive layout",
+        "Community event calendar and notice updates",
+        "Multilingual content accessibility"
+      ],
+      techStack: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
+      githubUrl: "https://github.com/WorkuFikadu/jimma-hiwot-berhan-church-website."
+    },
+    {
+      id: "kanenus-portfolio",
+      title: "Modern TypeScript Portfolio Platform",
+      category: "Frontend Architecture",
+      description: "A high-performance modern web portfolio crafted with TypeScript, emphasizing strict type safety, modular component systems, and dynamic styling.",
+      features: [
+        "Strict TypeScript type safety and reusable design tokens",
+        "Optimized asset loading and Lighthouse 95+ performance",
+        "Interactive micro-interactions and responsive navigation"
+      ],
+      techStack: ["TypeScript", "React", "CSS Modules"],
+      githubUrl: "https://github.com/WorkuFikadu/kanenus-portfolio"
     }
   ],
 

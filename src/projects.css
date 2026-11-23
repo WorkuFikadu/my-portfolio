@@ -1,0 +1,55 @@
+/* Project Controls: Search & Filters */
+.project-controls-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.project-search-box {
+  position: relative;
+  max-width: 650px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.project-search-box .search-icon {
+  position: absolute;
+  top: 50%;
+  left: 1.2rem;
+  transform: translateY(-50%);
+  color: var(--text-dim);
+}
+
+.project-search-box input {
+  width: 100%;
+  padding: 0.95rem 1.2rem 0.95rem 3rem;
+  background: rgba(18, 24, 38, 0.7);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: var(--transition);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.project-search-box input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: rgba(18, 24, 38, 0.9);
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.35);
+}
+
+.project-tilt-wrapper {
+  height: 100%;
+}
+
+.project-card {
+  height: 100%;
+}
+
+.no-projects-found {
+  padding: 3rem;
+  color: var(--text-muted);
+}
