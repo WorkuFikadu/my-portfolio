@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ParticleBackground from './components/ParticleBackground';
 import CursorGlow from './components/CursorGlow';
+import AiAssistant from './components/AiAssistant';
 
 // Pages
 import Home from './pages/Home';
@@ -39,6 +40,7 @@ function App() {
         </Routes>
       </main>
       <Footer />
+      <AiAssistant />
     </div>
   );
 }

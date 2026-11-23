@@ -5,6 +5,7 @@ import { ArrowRight, Code2, Globe, ShieldCheck, Award, Send, CheckCircle2, Termi
 import TiltCard from '../components/TiltCard';
 import TypewriterText from '../components/TypewriterText';
 import InstallAppBtn from '../components/InstallAppBtn';
+import ResumeModal from '../components/ResumeModal';
 
 export default function Home() {
   return (
@@ -49,6 +50,7 @@ export default function Home() {
                 <Send size={18} />
                 <span>Contact Worku</span>
               </Link>
+              <ResumeModal />
               <InstallAppBtn className="hero-app-btn" />
             </div>
 

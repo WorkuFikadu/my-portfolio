@@ -10,6 +10,7 @@ import './services.css';
 import './projects.css';
 import './responsive.css';
 import './installApp.css';
+import './proFeatures.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
