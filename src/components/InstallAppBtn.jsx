@@ -47,10 +47,10 @@ export default function InstallAppBtn({ className = '' }) {
       title="Download & Install Portfolio App on Desktop or Mobile"
       aria-label="Download and Install App"
     >
-      <div className="install-icon-wrapper">
+      <div className="install-icon-wrapper portrait-app-icon">
         <img 
-          src={`${import.meta.env.BASE_URL}favicon.svg`} 
-          alt="App Icon" 
+          src={`${import.meta.env.BASE_URL}app-icon.jpg`} 
+          alt="Worku Fikadu App Icon" 
           className="app-download-icon-img"
         />
       </div>
