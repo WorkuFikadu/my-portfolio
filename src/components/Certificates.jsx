@@ -93,7 +93,7 @@ export default function Certificates() {
               description: "Full-Stack Development Roadmap detailing HTML5 structure, CSS3 styling, JavaScript logic, and React application architecture."
             })}>
               <img 
-                src="/images/poster-web-dev-journey.jpg" 
+                src={`${import.meta.env.BASE_URL}images/poster-web-dev-journey.jpg`} 
                 alt="Web Development Journey Roadmap"
                 className="poster-img"
               />

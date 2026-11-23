@@ -70,7 +70,7 @@ export default function Hero() {
           <div className="hero-portrait-card">
             <div className="portrait-image-wrapper">
               <img 
-                src="/images/profile-portrait.jpg" 
+                src={`${import.meta.env.BASE_URL}images/profile-portrait.jpg`} 
                 alt={`${personalData.name} Portrait`} 
                 className="hero-portrait-img"
               />

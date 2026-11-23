@@ -76,7 +76,7 @@ export default function Home() {
             <TiltCard className="hero-portrait-card">
               <div className="portrait-image-wrapper neon-image-border">
                 <img 
-                  src="/images/profile-portrait.jpg" 
+                  src={`${import.meta.env.BASE_URL}images/profile-portrait.jpg`} 
                   alt={`${personalData.name} Portrait`} 
                   className="hero-portrait-img"
                 />

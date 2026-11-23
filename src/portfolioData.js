@@ -173,7 +173,7 @@ export const personalData = {
       issuer: "Ministry of Labor and Skills (MoLS) & EDI in partnership with SNV LIWAY",
       date: "November 25 - 30, 2025",
       description: "Awarded for completing the Bootcamp covering Design Your Venture (DYV) Workshop to the first-round pitch competition.",
-      image: "/images/cert-bruh-ethiopia.jpg",
+      image: `${import.meta.env.BASE_URL}images/cert-bruh-ethiopia.jpg`,
       category: "Innovation & Entrepreneurship"
     },
     {
@@ -183,7 +183,7 @@ export const personalData = {
       mentor: "Mr. Amansisa Gutu",
       date: "2025",
       description: "Acknowledging mastery of essential concepts and practical application of advanced Full-Stack Web Development, hands-on projects, and production engineering.",
-      image: "/images/cert-yai-fullstack.jpg",
+      image: `${import.meta.env.BASE_URL}images/cert-yai-fullstack.jpg`,
       category: "Full-Stack Development"
     },
     {
@@ -192,7 +192,7 @@ export const personalData = {
       issuer: "IDEEZA Tech Community",
       date: "November 2026",
       description: "Recognized with 3rd Place Certificate of Achievement for outstanding engineering and product development during the nationwide hackathon.",
-      image: "/images/cert-ideeza-hackathon.jpg",
+      image: `${import.meta.env.BASE_URL}images/cert-ideeza-hackathon.jpg`,
       category: "Hackathon & Honors"
     },
     {
@@ -201,7 +201,7 @@ export const personalData = {
       issuer: "InnoLearn Systems, Placid Solutions & Florida University Southeast",
       date: "April 6 - May 24, 2026",
       description: "Completed intensive AI foundations training as part of the Youth Empowerment and Economic Accelerator Platform (YEEAP).",
-      image: "/images/cert-yeeap-ai.jpg",
+      image: `${import.meta.env.BASE_URL}images/cert-yeeap-ai.jpg`,
       category: "Artificial Intelligence"
     },
     {
@@ -210,7 +210,7 @@ export const personalData = {
       issuer: "Bulchiinsa Magaalaa Jimmaa - Ganda Bosaa Addis Katamaa",
       date: "2018 E.C. (2025/2026 G.C.)",
       description: "High recognition for outstanding leadership in public ICT digitization, community database harmonization, and National ID integration.",
-      image: "/images/cert-bosa-addis-ict.jpg",
+      image: `${import.meta.env.BASE_URL}images/cert-bosa-addis-ict.jpg`,
       category: "Public Sector Impact & ICT"
     }
   ],
@@ -219,22 +219,22 @@ export const personalData = {
     {
       title: "Goldman Tech PLC Leadership",
       subtitle: "Technical Team Leader directing development sprints",
-      image: "/images/goldman-team.jpg"
+      image: `${import.meta.env.BASE_URL}images/goldman-team.jpg`
     },
     {
       title: "Executive Workstation",
       subtitle: "Worku Fikadu at Goldman Tech PLC Head Office",
-      image: "/images/goldman-leader.jpg"
+      image: `${import.meta.env.BASE_URL}images/goldman-leader.jpg`
     },
     {
       title: "Web Development Roadmap & Architecture",
       subtitle: "Full-Stack Engineering Journey Overview",
-      image: "/images/poster-web-dev-journey.jpg"
+      image: `${import.meta.env.BASE_URL}images/poster-web-dev-journey.jpg`
     },
     {
       title: "Developer Banner",
       subtitle: "Building digital solutions that are fast, responsive, and scalable",
-      image: "/images/banner-developer-hero.jpg"
+      image: `${import.meta.env.BASE_URL}images/banner-developer-hero.jpg`
     }
   ]
 };

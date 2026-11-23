@@ -43,7 +43,7 @@ export default function Leadership() {
           <div className="leadership-card">
             <div className="leadership-img-box">
               <img 
-                src="/images/goldman-team.jpg" 
+                src={`${import.meta.env.BASE_URL}images/goldman-team.jpg`} 
                 alt="Goldman Tech Team Sprints" 
                 className="leadership-img"
               />
@@ -66,7 +66,7 @@ export default function Leadership() {
           <div className="leadership-card">
             <div className="leadership-img-box">
               <img 
-                src="/images/goldman-leader.jpg" 
+                src={`${import.meta.env.BASE_URL}images/goldman-leader.jpg`} 
                 alt="Worku Fikadu at Desk" 
                 className="leadership-img"
               />
