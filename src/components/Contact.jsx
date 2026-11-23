@@ -5,6 +5,7 @@ import {
   ExternalLink, Check, Copy, MessageSquare, Shield, Globe
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon, InstagramIcon } from './SocialIcons';
+import { fireConfetti } from '../utils/confetti';
 
 export default function Contact() {
   const { contact, business } = personalData;
@@ -30,12 +31,14 @@ TikTok: @worku_goldman`;
   const handleCopySignature = () => {
     navigator.clipboard.writeText(professionalSignature);
     setCopied(true);
+    fireConfetti();
     setTimeout(() => setCopied(false), 2500);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
+    fireConfetti();
     setTimeout(() => {
       setSubmitted(false);
       setFormData({ name: '', email: '', subject: '', message: '' });

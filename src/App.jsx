@@ -1,28 +1,37 @@
 import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Leadership from './components/Leadership';
-import Certificates from './components/Certificates';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import Education from './components/Education';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
+import ParticleBackground from './components/ParticleBackground';
+
+// Pages
+import Home from './pages/Home';
+import AboutPage from './pages/AboutPage';
+import LeadershipPage from './pages/LeadershipPage';
+import CertificatesPage from './pages/CertificatesPage';
+import SkillsPage from './pages/SkillsPage';
+import ProjectsPage from './pages/ProjectsPage';
+import ExperiencePage from './pages/ExperiencePage';
+import ContactPage from './pages/ContactPage';
 
 function App() {
   return (
     <div className="portfolio-app">
+      <ParticleBackground />
       <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Leadership />
-        <Certificates />
-        <Skills />
-        <Projects />
-        <Education />
-        <Contact />
+      <main className="main-content-flow">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/leadership" element={<LeadershipPage />} />
+          <Route path="/certificates" element={<CertificatesPage />} />
+          <Route path="/skills" element={<SkillsPage />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/experience" element={<ExperiencePage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          {/* Fallback route */}
+          <Route path="*" element={<Home />} />
+        </Routes>
       </main>
       <Footer />
     </div>

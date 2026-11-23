@@ -1,48 +1,66 @@
 import React, { useState, useEffect } from 'react';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import { personalData } from '../portfolioData';
-import { Menu, X, ArrowUpRight, Sparkles } from 'lucide-react';
+import { Menu, X, Sparkles, Code2 } from 'lucide-react';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+      setScrolled(window.scrollY > 30);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close menu on route change
+  useEffect(() => {
+    setMobileMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [location.pathname]);
+
   const navLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Leadership', href: '#leadership' },
-    { name: 'Certificates', href: '#certificates' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Education', href: '#education' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+    { name: 'Leadership', path: '/leadership' },
+    { name: 'Certificates', path: '/certificates' },
+    { name: 'Skills', path: '/skills' },
+    { name: 'Projects', path: '/projects' },
+    { name: 'Experience', path: '/experience' },
+    { name: 'Contact', path: '/contact' }
   ];
 
   return (
     <header className={`navbar-header ${scrolled ? 'navbar-scrolled' : ''}`}>
       <div className="container nav-container">
-        <a href="#hero" className="brand-logo">
-          <span className="brand-avatar-badge">WF</span>
+        <Link to="/" className="brand-logo">
+          <span className="brand-avatar-badge">
+            <Code2 size={20} />
+          </span>
           <div className="brand-text-wrap">
             <span className="brand-name">{personalData.name}</span>
             <span className="brand-sub">Goldman Tech PLC</span>
           </div>
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="desktop-nav">
           <ul className="nav-list">
             {navLinks.map((link) => (
               <li key={link.name}>
-                <a href={link.href} className="nav-item">
+                <NavLink 
+                  to={link.path} 
+                  className={({ isActive }) => `nav-item ${isActive ? 'active-nav-item' : ''}`}
+                  end={link.path === '/'}
+                >
                   {link.name}
-                </a>
+                  {link.path === '/certificates' && (
+                    <span className="nav-bubble-count">5</span>
+                  )}
+                </NavLink>
               </li>
             ))}
           </ul>
@@ -50,10 +68,10 @@ export default function Navbar() {
 
         {/* Action Button */}
         <div className="nav-actions">
-          <a href="#contact" className="btn btn-primary btn-sm">
+          <Link to="/contact" className="btn btn-primary btn-sm pulse-hover">
             <span>Hire Me</span>
-            <Sparkles size={16} />
-          </a>
+            <Sparkles size={15} />
+          </Link>
           <button 
             className="mobile-toggle-btn"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -67,7 +85,7 @@ export default function Navbar() {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="mobile-menu-overlay" onClick={() => setMobileMenuOpen(false)}>
-          <div className="mobile-menu-content" onClick={(e) => e.stopPropagation()}>
+          <div className="mobile-menu-content animate-slide-left" onClick={(e) => e.stopPropagation()}>
             <div className="mobile-menu-header">
               <span className="brand-name">{personalData.name}</span>
               <button onClick={() => setMobileMenuOpen(false)} className="close-btn">
@@ -77,20 +95,21 @@ export default function Navbar() {
             <ul className="mobile-nav-list">
               {navLinks.map((link) => (
                 <li key={link.name}>
-                  <a 
-                    href={link.href} 
-                    className="mobile-nav-link"
+                  <NavLink 
+                    to={link.path} 
+                    className={({ isActive }) => `mobile-nav-link ${isActive ? 'active-mobile-link' : ''}`}
+                    end={link.path === '/'}
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {link.name}
-                  </a>
+                  </NavLink>
                 </li>
               ))}
             </ul>
             <div className="mobile-menu-footer">
-              <a href="#contact" className="btn btn-primary btn-block" onClick={() => setMobileMenuOpen(false)}>
+              <Link to="/contact" className="btn btn-primary btn-block" onClick={() => setMobileMenuOpen(false)}>
                 Get In Touch
-              </a>
+              </Link>
             </div>
           </div>
         </div>
