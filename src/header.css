@@ -1,0 +1,622 @@
+/* ==========================================================================
+   ULTRA-MODERN FLOATING DOCK HEADER (EXECUTIVE SILICON-VALLEY GRADE)
+   ========================================================================== */
+
+/* 1. Floating Dock Container */
+.navbar-dock-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 0.9rem 1.25rem;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  transition: padding 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navbar-dock-wrapper.is-scrolled {
+  padding: 0.55rem 1.25rem;
+}
+
+.navbar-dock-inner {
+  pointer-events: auto;
+  width: 100%;
+  max-width: 1380px;
+  height: 62px;
+  background: rgba(11, 17, 32, 0.8);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 0 24px rgba(56, 189, 248, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  padding: 0.4rem 0.7rem 0.4rem 0.9rem;
+  transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, height 0.25s ease;
+}
+
+.navbar-dock-wrapper.is-scrolled .navbar-dock-inner {
+  height: 56px;
+  background: rgba(9, 13, 24, 0.92);
+  border-color: rgba(56, 189, 248, 0.28);
+  box-shadow:
+    0 14px 40px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 0 28px rgba(56, 189, 248, 0.12);
+}
+
+/* 2. Brand Identity */
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+.brand-monogram {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.92rem;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  position: relative;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.brand-logo:hover .brand-monogram {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.6);
+}
+
+.brand-live-pulse {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: #10b981;
+  border: 2px solid #0b1120;
+  box-shadow: 0 0 8px #10b981;
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.2); opacity: 0.7; }
+}
+
+.brand-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  min-width: 0;
+}
+
+.brand-name-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.brand-logo .brand-name {
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: #f8fafc;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.brand-status-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.brand-role-badge {
+  color: #f59e0b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.brand-role-sep {
+  color: #64748b;
+  font-size: 0.7rem;
+}
+
+.brand-univ-tag {
+  color: #38bdf8;
+  font-weight: 500;
+}
+
+/* 3. Center Dock Navigation Track
+   Explicitly override legacy App.css min-width: 900px rules */
+.navbar-dock-inner .desktop-nav {
+  display: none;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+@media (min-width: 1200px) {
+  .navbar-dock-inner .desktop-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.nav-dock-track {
+  display: flex;
+  align-items: center;
+  gap: 0.08rem;
+  max-width: 100%;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 9999px;
+  padding: 0.2rem 0.24rem;
+}
+
+.nav-dock-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.36rem 0.48rem;
+  border-radius: 9999px;
+  font-size: 0.79rem;
+  font-weight: 500;
+  color: #94a3b8;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+  position: relative;
+}
+
+.nav-dock-item:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.nav-dock-item.active-dock-item {
+  color: #7dd3fc;
+  background: rgba(56, 189, 248, 0.14);
+  font-weight: 600;
+  border-color: rgba(56, 189, 248, 0.28);
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.16);
+}
+
+.nav-badge-inline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(56, 189, 248, 0.22);
+  color: #7dd3fc;
+  font-size: 0.65rem;
+  font-weight: 700;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 0.32rem;
+  border-radius: 9999px;
+  line-height: 1;
+}
+
+/* 4. Action Controls on the Right */
+.navbar-dock-inner .nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-shrink: 0;
+}
+
+/* Harmonized Command Palette Trigger Pill */
+.navbar-dock-inner .cmd-palette-pill {
+  height: 36px;
+  padding: 0 0.72rem;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  color: #cbd5e1;
+  font-size: 0.78rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.22s ease;
+}
+
+.navbar-dock-inner .cmd-palette-pill:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(56, 189, 248, 0.45);
+  color: #ffffff;
+}
+
+/* Compact PWA Install Pill */
+.nav-install-compact-btn {
+  height: 36px;
+  padding: 0 0.65rem 0 0.42rem;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  color: #f1f5f9;
+  font-size: 0.78rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+
+.nav-install-compact-btn:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(56, 189, 248, 0.45);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
+  transform: translateY(-1px);
+}
+
+.nav-app-icon-squircle {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  flex-shrink: 0;
+}
+
+.nav-app-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.nav-app-label {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #f8fafc;
+}
+
+.nav-app-dl-icon {
+  color: #38bdf8;
+}
+
+/* Executive Hire Me CTA Button */
+.nav-hire-btn {
+  height: 36px;
+  padding: 0 0.95rem;
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.36rem;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.35);
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.nav-hire-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.55);
+  border-color: rgba(255, 255, 255, 0.32);
+  color: #ffffff;
+}
+
+.hire-sparkle-icon {
+  color: #7dd3fc;
+}
+
+.hire-arrow-icon {
+  color: #ffffff;
+  transition: transform 0.2s ease;
+}
+
+.nav-hire-btn:hover .hire-arrow-icon {
+  transform: translate(2px, -2px);
+}
+
+/* Mobile / Tablet Toggle Hamburger (overrides App.css min-width: 900px) */
+.navbar-dock-inner .mobile-toggle-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.navbar-dock-inner .mobile-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.11);
+  border-color: rgba(56, 189, 248, 0.45);
+}
+
+@media (min-width: 1200px) {
+  .navbar-dock-inner .mobile-toggle-btn {
+    display: none;
+  }
+}
+
+/* 5. Sleek Full-Height Frosted Mobile Drawer */
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 650;
+  display: flex;
+  justify-content: flex-end;
+  pointer-events: auto;
+}
+
+.mobile-menu-content {
+  width: 86%;
+  max-width: 340px;
+  height: 100%;
+  background: #0b1120;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.8);
+  overflow-y: auto;
+}
+
+.mobile-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-bottom: 1.15rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 1.25rem;
+}
+
+.mobile-close-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.mobile-close-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border-color: rgba(56, 189, 248, 0.45);
+}
+
+.mobile-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.mobile-nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.72rem 1rem;
+  border-radius: 12px;
+  color: #cbd5e1;
+  font-size: 0.94rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.mobile-nav-item:hover,
+.mobile-nav-item.active-mobile-link {
+  background: rgba(56, 189, 248, 0.12);
+  color: #7dd3fc !important;
+  font-weight: 600;
+  border-color: rgba(56, 189, 248, 0.25);
+  border-left-width: 1px;
+  padding-left: 1rem;
+}
+
+.mobile-nav-badge {
+  font-size: 0.7rem;
+  background: rgba(56, 189, 248, 0.2);
+  color: #7dd3fc;
+  padding: 0.15rem 0.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+}
+
+.mobile-drawer-footer {
+  margin-top: auto;
+  padding-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.mobile-contact-quick {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+}
+
+.mobile-quick-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.65rem 0.8rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #f1f5f9;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.mobile-quick-btn:hover {
+  background: rgba(56, 189, 248, 0.15);
+  color: #7dd3fc;
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+.mobile-pwa-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+/* 6. Responsive Breakpoints */
+
+/* Standard laptops (1200px - 1419px): keep all 9 links crisp without crowding */
+@media (max-width: 1419px) and (min-width: 1200px) {
+  .navbar-dock-inner {
+    gap: 0.5rem;
+  }
+  .brand-univ-tag,
+  .brand-role-sep,
+  .cmd-pill-text {
+    display: none;
+  }
+  .navbar-dock-inner .cmd-palette-pill {
+    padding: 0 0.56rem;
+  }
+  .nav-dock-track {
+    gap: 0.04rem;
+    padding: 0.18rem 0.22rem;
+  }
+  .nav-dock-item {
+    padding: 0.34rem 0.42rem;
+    font-size: 0.77rem;
+  }
+}
+
+/* Tablets and narrow desktop windows (< 1200px): drawer toggle keeps dock spacious */
+@media (max-width: 1199px) {
+  .cmd-pill-text {
+    display: none;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 560px) {
+  .navbar-dock-wrapper {
+    padding: 0.55rem 0.75rem;
+  }
+  .navbar-dock-wrapper.is-scrolled {
+    padding: 0.45rem 0.75rem;
+  }
+  .navbar-dock-inner {
+    padding: 0.3rem 0.5rem 0.3rem 0.65rem;
+    height: 54px;
+    gap: 0.4rem;
+  }
+  .navbar-dock-wrapper.is-scrolled .navbar-dock-inner {
+    height: 52px;
+  }
+  .brand-monogram {
+    width: 32px;
+    height: 32px;
+    border-radius: 9px;
+    font-size: 0.82rem;
+  }
+  .brand-logo .brand-name {
+    font-size: 0.86rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .brand-status-wrap {
+    font-size: 0.6rem;
+  }
+  .brand-role-badge {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .brand-role-sep,
+  .brand-univ-tag {
+    display: none;
+  }
+  .navbar-dock-inner .cmd-palette-pill {
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    justify-content: center;
+  }
+  .cmd-pill-kbd {
+    display: none;
+  }
+  .nav-install-compact-btn {
+    display: none; /* Available inside the mobile drawer */
+  }
+  .nav-hire-btn {
+    height: 34px;
+    padding: 0 0.75rem;
+    font-size: 0.76rem;
+  }
+  .navbar-dock-inner .mobile-toggle-btn {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+@media (max-width: 380px) {
+  .hire-sparkle-icon {
+    display: none;
+  }
+  .nav-hire-btn {
+    padding: 0 0.62rem;
+    font-size: 0.74rem;
+  }
+  .brand-logo {
+    gap: 0.42rem;
+  }
+  .brand-logo .brand-name {
+    font-size: 0.82rem;
+  }
+}

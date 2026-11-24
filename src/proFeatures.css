@@ -273,10 +273,10 @@
   inset: 0;
   background: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(8px);
-  z-index: 600;
+  z-index: 700;
   display: flex;
   justify-content: center;
-  padding-top: 15vh;
+  padding: 15vh 1rem 1rem;
 }
 
 .cmd-palette-dialog {
@@ -342,8 +342,9 @@
   color: #e2e8f0;
 }
 
-.cmd-result-item:hover {
-  background: rgba(59, 130, 246, 0.15);
+.cmd-result-item:hover,
+.cmd-result-item.cmd-result-active {
+  background: rgba(59, 130, 246, 0.16);
   color: white;
 }
 
@@ -371,7 +372,8 @@
   transition: var(--transition);
 }
 
-.cmd-result-item:hover .cmd-item-arrow {
+.cmd-result-item:hover .cmd-item-arrow,
+.cmd-result-item.cmd-result-active .cmd-item-arrow {
   opacity: 1;
   transform: translateX(3px);
 }
@@ -402,7 +404,7 @@
   inset: 0;
   background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(8px);
-  z-index: 550;
+  z-index: 600;
   display: flex;
   align-items: center;
   justify-content: center;

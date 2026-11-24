@@ -12,6 +12,7 @@ import './responsive.css';
 import './installApp.css';
 import './proFeatures.css';
 import './security.css';
+import './header.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

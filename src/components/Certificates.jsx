@@ -1,10 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { personalData } from '../portfolioData';
-import { Award, ExternalLink, Calendar, CheckCircle2, X, ZoomIn } from 'lucide-react';
+import { Award, ExternalLink, Calendar, X, ZoomIn } from 'lucide-react';
 
 export default function Certificates() {
   const [selectedCert, setSelectedCert] = useState(null);
   const [activeFilter, setActiveFilter] = useState('All');
+
+  useEffect(() => {
+    if (!selectedCert) return undefined;
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setSelectedCert(null);
+      }
+    };
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedCert]);
 
   const categories = ['All', 'Full-Stack Development', 'Innovation & Entrepreneurship', 'Artificial Intelligence', 'Hackathon & Honors', 'Public Sector Impact & ICT'];
 
@@ -89,7 +108,7 @@ export default function Certificates() {
             <div className="poster-image-box" onClick={() => setSelectedCert({
               title: "The Web Development Journey & Architecture",
               issuer: "Worku Fikadu — Jimma University & Goldman Tech PLC",
-              image: "/images/poster-web-dev-journey.jpg",
+              image: `${import.meta.env.BASE_URL}images/poster-web-dev-journey.jpg`,
               description: "Full-Stack Development Roadmap detailing HTML5 structure, CSS3 styling, JavaScript logic, and React application architecture."
             })}>
               <img 
@@ -115,11 +134,22 @@ export default function Certificates() {
           </div>
         </div>
 
-        {/* Modal Viewer */}
-        {selectedCert && (
+        {/* Modal Viewer rendered via portal to avoid page-animate transform containing block */}
+        {selectedCert && createPortal(
           <div className="modal-lightbox-backdrop" onClick={() => setSelectedCert(null)}>
-            <div className="modal-lightbox-content" onClick={(e) => e.stopPropagation()}>
-              <button className="modal-close-button" onClick={() => setSelectedCert(null)}>
+            <div
+              className="modal-lightbox-content"
+              role="dialog"
+              aria-modal="true"
+              aria-label={selectedCert.title}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                type="button"
+                className="modal-close-button"
+                onClick={() => setSelectedCert(null)}
+                aria-label="Close certificate preview"
+              >
                 <X size={24} />
               </button>
               <div className="modal-image-wrapper">
@@ -131,7 +161,8 @@ export default function Certificates() {
                 {selectedCert.description && <p className="modal-sub-desc">{selectedCert.description}</p>}
               </div>
             </div>
-          </div>
+          </div>,
+          document.body
         )}
       </div>
     </section>

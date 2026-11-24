@@ -1,27 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { Download, Check, Sparkles } from 'lucide-react';
+import { Download, Check } from 'lucide-react';
 import { fireConfetti } from '../utils/confetti';
 
-export default function InstallAppBtn({ className = '' }) {
+export default function InstallAppBtn({ className = '', compact = false }) {
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [installed, setInstalled] = useState(false);
 
   useEffect(() => {
-    const handler = (e) => {
+    const handleBeforeInstall = (e) => {
       e.preventDefault();
       setDeferredPrompt(e);
     };
 
-    window.addEventListener('beforeinstallprompt', handler);
-
-    window.addEventListener('appinstalled', () => {
+    const handleAppInstalled = () => {
       setInstalled(true);
       setDeferredPrompt(null);
       fireConfetti();
-    });
+    };
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstall);
+    window.addEventListener('appinstalled', handleAppInstalled);
 
     return () => {
-      window.removeEventListener('beforeinstallprompt', handler);
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstall);
+      window.removeEventListener('appinstalled', handleAppInstalled);
     };
   }, []);
 
@@ -40,17 +42,44 @@ export default function InstallAppBtn({ className = '' }) {
     }
   };
 
+  if (compact) {
+    return (
+      <button
+        type="button"
+        onClick={handleInstall}
+        className={`nav-install-compact-btn ${className}`}
+        title="Download & Install App on Desktop or Mobile (PWA)"
+        aria-label="Download App"
+      >
+        <div className="nav-app-icon-squircle">
+          <img
+            src={`${import.meta.env.BASE_URL}app-icon.jpg`}
+            alt="Worku App Icon"
+            className="nav-app-img"
+          />
+        </div>
+        <span className="nav-app-label">{installed ? 'Installed' : 'App'}</span>
+        {installed ? (
+          <Check size={13} className="text-emerald" />
+        ) : (
+          <Download size={13} className="nav-app-dl-icon" />
+        )}
+      </button>
+    );
+  }
+
   return (
-    <button 
-      onClick={handleInstall} 
+    <button
+      type="button"
+      onClick={handleInstall}
       className={`btn-install-app ${className}`}
       title="Download & Install Portfolio App on Desktop or Mobile"
       aria-label="Download and Install App"
     >
       <div className="install-icon-wrapper portrait-app-icon">
-        <img 
-          src={`${import.meta.env.BASE_URL}app-icon.jpg`} 
-          alt="Worku Fikadu App Icon" 
+        <img
+          src={`${import.meta.env.BASE_URL}app-icon.jpg`}
+          alt="Worku Fikadu App Icon"
           className="app-download-icon-img"
         />
       </div>

@@ -13,7 +13,7 @@
 
 /* Page transitions */
 .page-animate {
-  animation: fadeInPage 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeInPage 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes fadeInPage {
@@ -23,7 +23,7 @@
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
 }
 

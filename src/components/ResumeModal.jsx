@@ -1,10 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { personalData } from '../portfolioData';
-import { FileText, Download, Printer, X, Sparkles, CheckCircle2, ShieldCheck, Mail, Phone, MapPin } from 'lucide-react';
+import { FileText, Printer, X, Mail, Phone, MapPin } from 'lucide-react';
 import { fireConfetti } from '../utils/confetti';
 
 export default function ResumeModal() {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isOpen) return undefined;
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setIsOpen(false);
+      }
+    };
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen]);
 
   const handlePrint = () => {
     fireConfetti();
@@ -14,6 +33,7 @@ export default function ResumeModal() {
   return (
     <>
       <button 
+        type="button"
         onClick={() => { setIsOpen(true); fireConfetti(); }} 
         className="btn btn-outline btn-resume-trigger"
         title="View & Download Worku Fikadu's Professional CV"
@@ -22,9 +42,15 @@ export default function ResumeModal() {
         <span>View CV / Resume</span>
       </button>
 
-      {isOpen && (
+      {isOpen && createPortal(
         <div className="resume-modal-backdrop" onClick={() => setIsOpen(false)}>
-          <div className="resume-modal-content card-glass" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="resume-modal-content card-glass"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Official Curriculum Vitae"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="resume-modal-header">
               <div className="resume-header-titles">
                 <FileText size={20} className="text-accent" />
@@ -32,11 +58,16 @@ export default function ResumeModal() {
                 <span className="resume-badge">2026 Verified</span>
               </div>
               <div className="resume-header-actions">
-                <button onClick={handlePrint} className="btn btn-sm btn-primary">
+                <button type="button" onClick={handlePrint} className="btn btn-sm btn-primary">
                   <Printer size={15} />
                   <span>Print / Save as PDF</span>
                 </button>
-                <button onClick={() => setIsOpen(false)} className="resume-close-btn">
+                <button
+                  type="button"
+                  onClick={() => setIsOpen(false)}
+                  className="resume-close-btn"
+                  aria-label="Close resume modal"
+                >
                   <X size={20} />
                 </button>
               </div>
@@ -120,7 +151,8 @@ export default function ResumeModal() {
               </div>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
