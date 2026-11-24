@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import LanguageProvider from './context/LanguageProvider';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ParticleBackground from './components/ParticleBackground';
@@ -19,29 +20,31 @@ import ContactPage from './pages/ContactPage';
 
 function App() {
   return (
-    <div className="portfolio-app">
-      <CursorGlow />
-      <ParticleBackground />
-      <div className="cyber-grid-overlay"></div>
-      <Navbar />
-      <main className="main-content-flow">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/leadership" element={<LeadershipPage />} />
-          <Route path="/certificates" element={<CertificatesPage />} />
-          <Route path="/skills" element={<SkillsPage />} />
-          <Route path="/projects" element={<ProjectsPage />} />
-          <Route path="/experience" element={<ExperiencePage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          {/* Fallback route */}
-          <Route path="*" element={<Home />} />
-        </Routes>
-      </main>
-      <Footer />
-      <AiAssistant />
-    </div>
+    <LanguageProvider>
+      <div className="portfolio-app">
+        <CursorGlow />
+        <ParticleBackground />
+        <div className="cyber-grid-overlay"></div>
+        <Navbar />
+        <main className="main-content-flow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/leadership" element={<LeadershipPage />} />
+            <Route path="/certificates" element={<CertificatesPage />} />
+            <Route path="/skills" element={<SkillsPage />} />
+            <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/experience" element={<ExperiencePage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            {/* Fallback route */}
+            <Route path="*" element={<Home />} />
+          </Routes>
+        </main>
+        <Footer />
+        <AiAssistant />
+      </div>
+    </LanguageProvider>
   );
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { personalData } from '../portfolioData';
-import { GraduationCap, Calendar, MapPin, CheckCircle2 } from 'lucide-react';
+import { GraduationCap, Calendar } from 'lucide-react';
 
 export default function Education() {
   const { education } = personalData;

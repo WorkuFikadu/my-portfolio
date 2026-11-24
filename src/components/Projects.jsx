@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { personalData } from '../portfolioData';
-import { FolderGit2, ExternalLink, CheckCircle2, Layers } from 'lucide-react';
+import { FolderGit2, ExternalLink, CheckCircle2, BookOpen } from 'lucide-react';
 import { GithubIcon } from './SocialIcons';
+import ProjectCaseStudyModal from './ProjectCaseStudyModal';
+import GitHubStatsBar from './GitHubStatsBar';
 
 export default function Projects() {
   const { projects } = personalData;
+  const [selectedProject, setSelectedProject] = useState(null);
 
   return (
     <section id="projects" className="section-padding projects-section">
@@ -14,11 +17,13 @@ export default function Projects() {
             <FolderGit2 size={16} />
             <span>Engineering Portfolio</span>
           </div>
-          <h2 className="section-title">Featured Projects & Systems</h2>
+          <h2 className="section-title">Featured Projects &amp; Systems</h2>
           <p className="section-subtitle">
             Real-world systems, government digitizations, financial platforms, and cross-platform mobile architectures designed and built by Worku Fikadu.
           </p>
         </div>
+
+        <GitHubStatsBar />
 
         <div className="projects-grid">
           {projects.map((project) => (
@@ -27,10 +32,10 @@ export default function Projects() {
                 <span className="project-category-tag">{project.category}</span>
                 <div className="project-header-links">
                   {project.githubUrl && (
-                    <a 
-                      href={project.githubUrl} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="icon-link-btn"
                       aria-label="View Source on GitHub"
                     >
@@ -38,10 +43,10 @@ export default function Projects() {
                     </a>
                   )}
                   {project.demoUrl && (
-                    <a 
-                      href={project.demoUrl} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
+                    <a
+                      href={project.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="icon-link-btn primary"
                       aria-label="View Live Project"
                     >
@@ -76,22 +81,19 @@ export default function Projects() {
                 </div>
 
                 <div className="project-actions-row">
-                  {project.demoUrl && (
-                    <a 
-                      href={project.demoUrl} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="btn btn-sm btn-primary"
-                    >
-                      <span>Live Demo</span>
-                      <ExternalLink size={14} />
-                    </a>
-                  )}
+                  <button
+                    type="button"
+                    onClick={() => setSelectedProject(project)}
+                    className="btn btn-sm btn-primary"
+                  >
+                    <BookOpen size={14} />
+                    <span>Case Study</span>
+                  </button>
                   {project.githubUrl && (
-                    <a 
-                      href={project.githubUrl} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="btn btn-sm btn-outline"
                     >
                       <span>Source Code</span>
@@ -103,6 +105,11 @@ export default function Projects() {
             </div>
           ))}
         </div>
+
+        <ProjectCaseStudyModal
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
+        />
       </div>
     </section>
   );

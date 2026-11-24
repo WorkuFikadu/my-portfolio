@@ -2,16 +2,19 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { personalData } from '../portfolioData';
 import { 
-  Globe, Smartphone, Database, ShieldCheck, Users, Terminal, 
+  Globe, Smartphone, Database, ShieldCheck, Users, 
   Layers, ShoppingCart, Lock, Briefcase,
   CheckCircle2, ArrowRight, Sparkles, MessageSquare, GraduationCap 
 } from 'lucide-react';
 import TiltCard from '../components/TiltCard';
 import TechSolutionsShowcase from '../components/TechSolutionsShowcase';
+import ProjectEstimator from '../components/ProjectEstimator';
+import { useLanguage } from '../context/languageStore';
 
 export default function ServicesPage() {
   const { services } = personalData;
   const [activeCategory, setActiveCategory] = useState('All');
+  const { t, lang } = useLanguage();
 
   const categories = ['All', 'Software Engineering', 'Enterprise Systems', 'Commercial Tech', 'Security & Infrastructure', 'Consultancy & Strategy', 'Public Sector Tech'];
 
@@ -38,15 +41,13 @@ export default function ServicesPage() {
     <div className="page-animate pt-page">
       <section className="section-padding services-section">
         <div className="container">
-          <div className="section-header text-center">
+          <div className="section-header text-center" dir={lang === 'ar' ? 'rtl' : 'ltr'}>
             <div className="badge-chip">
               <GraduationCap size={16} />
-              <span>CS Graduate & Technical Lead Offerings</span>
+              <span>{t.services.badge}</span>
             </div>
-            <h1 className="section-title">End-to-End Technology Solutions & Consultancy</h1>
-            <p className="section-subtitle">
-              Comprehensive computer science and engineering services for startups, growing businesses, and enterprises across Ethiopia and beyond.
-            </p>
+            <h1 className="section-title">{t.services.title}</h1>
+            <p className="section-subtitle">{t.services.subtitle}</p>
           </div>
 
           {/* Category Filter Pills */}
@@ -93,7 +94,7 @@ export default function ServicesPage() {
 
                   <div className="service-card-footer">
                     <Link to="/contact" className="service-action-btn">
-                      <span>Inquire / Request Service</span>
+                      <span>{t.services.requestBtn}</span>
                       <ArrowRight size={15} />
                     </Link>
                   </div>
@@ -117,6 +118,11 @@ export default function ServicesPage() {
               </p>
             </div>
             <TechSolutionsShowcase />
+          </div>
+
+          {/* Interactive Scope & Timeline Estimator */}
+          <div className="mt-12">
+            <ProjectEstimator />
           </div>
 
           {/* Call to Action Banner */}

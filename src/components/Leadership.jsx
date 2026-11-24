@@ -1,6 +1,6 @@
 import React from 'react';
 import { personalData } from '../portfolioData';
-import { Users, Award, Shield, CheckCircle2, Laptop, Layers, Terminal } from 'lucide-react';
+import { Users, Shield, Layers, Terminal } from 'lucide-react';
 
 export default function Leadership() {
   const { business } = personalData;

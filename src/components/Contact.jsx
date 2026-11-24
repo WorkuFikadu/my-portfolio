@@ -1,24 +1,28 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { personalData } from '../portfolioData';
-import { 
-  Mail, Phone, MapPin, Send, 
-  ExternalLink, Check, Copy, MessageSquare, Shield, Globe
+import {
+  Mail, Phone, MapPin, Send, ExternalLink, Check, Copy, Globe, MessageCircle
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon, InstagramIcon } from './SocialIcons';
 import { fireConfetti } from '../utils/confetti';
 import { sanitizeInput, checkRateLimit } from '../utils/security';
+import { useLanguage } from '../context/languageStore';
 
 export default function Contact() {
-  const { contact, business } = personalData;
+  const { contact } = personalData;
+  const { t, lang } = useLanguage();
+  const location = useLocation();
   const [copied, setCopied] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [submissionState, setSubmissionState] = useState(null);
   const [errorMsg, setErrorMsg] = useState('');
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState(() => ({
     name: '',
     email: '',
-    subject: '',
-    message: ''
-  });
+    subject: location.state?.prefillSubject || '',
+    message: location.state?.prefillMessage || ''
+  }));
 
   const professionalSignature = `Worku Fikadu
 Full-Stack Web Developer | Computer Science Student
@@ -37,19 +41,25 @@ TikTok: @worku_goldman`;
     setTimeout(() => setCopied(false), 2500);
   };
 
-  const handleSubmit = (e) => {
+  const buildDirectLinks = (data) => {
+    const bodyText = `Hello Worku,\n\nName: ${data.name}\nEmail: ${data.email}\n\n${data.message}`;
+    const mailtoUrl = `mailto:${contact.email}?subject=${encodeURIComponent(data.subject || 'Portfolio Inquiry')}&body=${encodeURIComponent(bodyText)}`;
+    const whatsappDigits = contact.primaryPhone.replace(/[^0-9]/g, '');
+    const whatsappUrl = `https://wa.me/${whatsappDigits}?text=${encodeURIComponent(`*${data.subject || 'Portfolio Inquiry'}*\nFrom: ${data.name} (${data.email})\n\n${data.message}`)}`;
+    return { mailtoUrl, whatsappUrl };
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // 1. Rate limiting check (Anti-spam / Anti-DDoS)
     if (!checkRateLimit(3, 60000)) {
       setErrorMsg('Too many messages sent. Please wait a minute before trying again.');
       return;
     }
 
-    // 2. Strict Input Sanitization
     const sanitizedName = sanitizeInput(formData.name);
     const sanitizedEmail = sanitizeInput(formData.email);
-    const sanitizedSubject = sanitizeInput(formData.subject);
+    const sanitizedSubject = sanitizeInput(formData.subject) || 'Portfolio Inquiry';
     const sanitizedMessage = sanitizeInput(formData.message);
 
     if (!sanitizedName || !sanitizedEmail || !sanitizedMessage) {
@@ -58,26 +68,53 @@ TikTok: @worku_goldman`;
     }
 
     setErrorMsg('');
-    setSubmitted(true);
+    setSending(true);
+
+    const payload = {
+      name: sanitizedName,
+      email: sanitizedEmail,
+      subject: sanitizedSubject,
+      message: sanitizedMessage
+    };
+
+    let delivered = false;
+    try {
+      const resp = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (resp.ok) {
+        const result = await resp.json();
+        delivered = Boolean(result.delivered);
+      }
+    } catch {
+      // Static preview or offline mode: fall through to instant Email / WhatsApp / Telegram handoff
+      delivered = false;
+    }
+
+    setSending(false);
+    setSubmissionState({ ...payload, delivered, ...buildDirectLinks(payload) });
     fireConfetti();
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 4000);
   };
+
+  const handleResetForm = () => {
+    setSubmissionState(null);
+    setFormData({ name: '', email: '', subject: '', message: '' });
+  };
+
+  const quickWhatsAppUrl = `https://wa.me/${contact.primaryPhone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent('Hello Worku! I visited your portfolio and would like to discuss a project.')}`;
 
   return (
     <section id="contact" className="section-padding contact-section">
       <div className="container">
-        <div className="section-header text-center">
+        <div className="section-header text-center" dir={lang === 'ar' ? 'rtl' : 'ltr'}>
           <div className="badge-chip">
             <Mail size={16} />
-            <span>Connect & Collaborate</span>
+            <span>{t.contact.badge}</span>
           </div>
-          <h2 className="section-title">Get In Touch</h2>
-          <p className="section-subtitle">
-            Available for full-stack engineering roles, software consultancy, technical team leadership, and open-source innovations.
-          </p>
+          <h2 className="section-title">{t.contact.title}</h2>
+          <p className="section-subtitle">{t.contact.subtitle}</p>
         </div>
 
         <div className="contact-grid">
@@ -85,23 +122,21 @@ TikTok: @worku_goldman`;
           <div className="contact-info-column">
             <div className="contact-card card-glass">
               <h3>Direct Channels</h3>
-              <p>Reach out directly by phone, email, or explore live code repositories.</p>
+              <p>Reach out directly by phone, WhatsApp, email, or explore live code repositories.</p>
 
               <div className="contact-channels-list">
-                {/* Primary Phone */}
                 <div className="channel-item">
                   <div className="channel-icon-wrap blue">
                     <Phone size={20} />
                   </div>
                   <div className="channel-details">
-                    <span className="channel-label">Primary Phone (Direct & WhatsApp)</span>
+                    <span className="channel-label">Primary Phone (Direct &amp; WhatsApp)</span>
                     <a href={`tel:${contact.primaryPhone}`} className="channel-value bold">
                       {contact.primaryPhone}
                     </a>
                   </div>
                 </div>
 
-                {/* Alternative Phones */}
                 <div className="channel-item">
                   <div className="channel-icon-wrap cyan">
                     <Phone size={20} />
@@ -120,7 +155,6 @@ TikTok: @worku_goldman`;
                   </div>
                 </div>
 
-                {/* Email */}
                 <div className="channel-item">
                   <div className="channel-icon-wrap purple">
                     <Mail size={20} />
@@ -133,7 +167,6 @@ TikTok: @worku_goldman`;
                   </div>
                 </div>
 
-                {/* Location */}
                 <div className="channel-item">
                   <div className="channel-icon-wrap emerald">
                     <MapPin size={20} />
@@ -145,9 +178,8 @@ TikTok: @worku_goldman`;
                 </div>
               </div>
 
-              {/* Social Media Links Bar */}
               <div className="social-links-block">
-                <h4>Social & Professional Networks</h4>
+                <h4>Social &amp; Professional Networks</h4>
                 <div className="social-buttons-row">
                   <a href={contact.github} target="_blank" rel="noopener noreferrer" className="social-btn" title="GitHub">
                     <GithubIcon size={20} />
@@ -169,12 +201,15 @@ TikTok: @worku_goldman`;
                     <Send size={18} />
                     <span>Telegram</span>
                   </a>
+                  <a href={quickWhatsAppUrl} target="_blank" rel="noopener noreferrer" className="social-btn" title="WhatsApp">
+                    <MessageCircle size={18} />
+                    <span>WhatsApp</span>
+                  </a>
                 </div>
               </div>
 
-              {/* Live Portfolios */}
               <div className="portfolios-list-block">
-                <h4>Live Hosted Portfolios & Mirrors</h4>
+                <h4>Live Hosted Portfolios &amp; Mirrors</h4>
                 <div className="portfolios-links-list">
                   {contact.portfolios.map((p, idx) => (
                     <a key={idx} href={p.url} target="_blank" rel="noopener noreferrer" className="portfolio-link-item">
@@ -186,11 +221,10 @@ TikTok: @worku_goldman`;
                 </div>
               </div>
 
-              {/* Ready to copy signature */}
               <div className="copy-signature-box">
                 <div className="copy-sig-header">
                   <span className="sig-badge">Ready-to-Copy Signature</span>
-                  <button onClick={handleCopySignature} className="btn-copy">
+                  <button type="button" onClick={handleCopySignature} className="btn-copy">
                     {copied ? (
                       <>
                         <Check size={16} className="text-emerald" />
@@ -212,8 +246,10 @@ TikTok: @worku_goldman`;
           {/* Contact Message Form */}
           <div className="contact-form-column">
             <div className="form-card card-glass">
-              <h3>Send a Message</h3>
-              <p>Have an inquiry or collaboration proposal? Send a direct note.</p>
+              <div dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+                <h3>{t.contact.sendTitle}</h3>
+                <p>{t.contact.sendSub}</p>
+              </div>
 
               {errorMsg && (
                 <div className="security-alert-box">
@@ -221,20 +257,57 @@ TikTok: @worku_goldman`;
                 </div>
               )}
 
-              {submitted ? (
+              {submissionState ? (
                 <div className="success-banner">
-                  <Check size={32} className="text-emerald" />
-                  <h4>Message Sent Successfully!</h4>
-                  <p>Thank you for reaching out, Worku Fikadu will respond promptly.</p>
+                  <Check size={34} className="text-emerald" />
+                  <h4>
+                    {submissionState.delivered
+                      ? 'Message Delivered to Worku!'
+                      : 'Inquiry Verified & Ready to Send!'}
+                  </h4>
+                  <p>
+                    {submissionState.delivered
+                      ? 'Thank you for reaching out — your note was delivered directly to Worku Fikadu’s inbox.'
+                      : 'Choose your preferred instant channel below to deliver your pre-filled inquiry straight to Worku:'}
+                  </p>
+
+                  <div className="contact-handoff-actions">
+                    <a href={submissionState.mailtoUrl} className="btn btn-primary btn-sm">
+                      <Mail size={15} />
+                      <span>Send via Email App</span>
+                    </a>
+                    <a
+                      href={submissionState.whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-secondary btn-sm"
+                    >
+                      <MessageCircle size={15} />
+                      <span>Send on WhatsApp</span>
+                    </a>
+                    <a
+                      href={contact.telegram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-outline btn-sm"
+                    >
+                      <Send size={15} />
+                      <span>Telegram @Olinafyadi</span>
+                    </a>
+                  </div>
+
+                  <button type="button" onClick={handleResetForm} className="btn btn-outline btn-sm mt-2">
+                    Send Another Note
+                  </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="contact-form">
                   <div className="form-group">
                     <label htmlFor="name">Your Name</label>
-                    <input 
-                      type="text" 
-                      id="name" 
-                      required 
+                    <input
+                      type="text"
+                      id="name"
+                      required
                       placeholder="e.g. Dawit Bekele"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -243,10 +316,10 @@ TikTok: @worku_goldman`;
 
                   <div className="form-group">
                     <label htmlFor="email">Your Email Address</label>
-                    <input 
-                      type="email" 
-                      id="email" 
-                      required 
+                    <input
+                      type="email"
+                      id="email"
+                      required
                       placeholder="name@example.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -255,10 +328,10 @@ TikTok: @worku_goldman`;
 
                   <div className="form-group">
                     <label htmlFor="subject">Subject</label>
-                    <input 
-                      type="text" 
-                      id="subject" 
-                      required 
+                    <input
+                      type="text"
+                      id="subject"
+                      required
                       placeholder="Project Collaboration / Opportunity"
                       value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
@@ -267,18 +340,18 @@ TikTok: @worku_goldman`;
 
                   <div className="form-group">
                     <label htmlFor="message">Message</label>
-                    <textarea 
-                      id="message" 
-                      rows="5" 
-                      required 
+                    <textarea
+                      id="message"
+                      rows="5"
+                      required
                       placeholder="Describe your project, timeline, or requirements..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     ></textarea>
                   </div>
 
-                  <button type="submit" className="btn btn-primary btn-block">
-                    <span>Send Message</span>
+                  <button type="submit" className="btn btn-primary btn-block" disabled={sending}>
+                    <span>{sending ? 'Preparing & Sending...' : t.contact.sendBtn}</span>
                     <Send size={18} />
                   </button>
                 </form>

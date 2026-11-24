@@ -24,7 +24,8 @@ export const personalData = {
     instagram: "https://instagram.com/wor.kufikadu",
     tiktok: "https://tiktok.com/@worku_goldman",
     portfolios: [
-      { name: "Live Portfolio", url: "https://workufikadu.github.io/my-portfolio/index.html" }
+      { name: "Live Portfolio (Vercel)", url: "https://my-portfolio-psi-indol-75.vercel.app/" },
+      { name: "Live Portfolio (GitHub Pages)", url: "https://workufikadu.github.io/my-portfolio/" }
     ]
   },
 
@@ -241,7 +242,13 @@ export const personalData = {
         "Secure medical record encryption & real-time diagnostic retrieval"
       ],
       techStack: ["Node.js", "React.js", "JavaScript", "Express", "REST APIs"],
-      githubUrl: "https://github.com/WorkuFikadu/PDMS"
+      githubUrl: "https://github.com/WorkuFikadu/PDMS",
+      caseStudy: {
+        problem: "Fragmented paper charts and siloed hospital systems make tracking patient history, allergies, and prescriptions across Ethiopian clinics slow and error-prone.",
+        architecture: "Decoupled React SPA client communicating over authenticated REST APIs with an Express/Node.js service layer and normalized patient/clinical entity schemas.",
+        securityAndScale: "Fayda National Digital ID verification, strict role-based access control (RBAC) separating Doctors, Pharmacists, and Admins, plus encrypted record payloads.",
+        impact: "Establishes a unified national digital health blueprint enabling instant clinical lookups and interoperable hospital workflows."
+      }
     },
     {
       id: "bosa-addis",
@@ -254,8 +261,13 @@ export const personalData = {
         "Dynamic analytics dashboard for municipal governance oversight"
       ],
       techStack: ["PHP", "MySQL", "JavaScript", "Bootstrap", "REST API"],
-      demoUrl: "https://workufikadu.github.io/my-portfolio/#/projects",
-      githubUrl: "https://github.com/WorkuFikadu/bosa-addis-ketema-kebele-management-system"
+      githubUrl: "https://github.com/WorkuFikadu/bosa-addis-ketema-kebele-management-system",
+      caseStudy: {
+        problem: "Manual kebele ledgers caused long queues for ID issuance, duplicate resident entries, and delayed municipal reporting in Bosa Addis Ketema.",
+        architecture: "Server-backed PHP/REST service paired with normalized MySQL resident/household tables and a responsive administrative analytics dashboard.",
+        securityAndScale: "JWT-authenticated municipal clerk sessions, input validation against SQL injection/XSS, and indexed family-tree record lookups.",
+        impact: "Recognized with an official Certificate of Appreciation from Jimma City Administration — Bosa Addis Kebele for public ICT digitization leadership."
+      }
     },
     {
       id: "cbe-digital-banking",
@@ -268,7 +280,13 @@ export const personalData = {
         "Real-time balance tracking, account statements, and transfer audits"
       ],
       techStack: ["JavaScript", "Node.js", "Express", "REST APIs", "Modern CSS"],
-      githubUrl: "https://github.com/WorkuFikadu/cbe-digital-banking"
+      githubUrl: "https://github.com/WorkuFikadu/cbe-digital-banking",
+      caseStudy: {
+        problem: "Digital wallet apps must prevent race conditions, negative balances, and double-spending when concurrent P2P transfers hit the server.",
+        architecture: "Express REST API implementing atomic debit/credit ledger pipelines, immutable audit log entries, and real-time wallet state synchronization.",
+        securityAndScale: "ACID-style transactional guards, server-side balance verification, idempotent transfer validation, and comprehensive transaction statement logs.",
+        impact: "Demonstrates production-grade fintech engineering tailored to CBE Birr and Telebirr mobile payment workflows in Ethiopia."
+      }
     },
     {
       id: "busa-gonofa-oromia",
@@ -281,7 +299,13 @@ export const personalData = {
         "Multi-tiered regional reporting dashboards"
       ],
       techStack: ["TypeScript", "React.js", "Node.js", "TailwindCSS"],
-      githubUrl: "https://github.com/WorkuFikadu/busa-gonofa-oromia"
+      githubUrl: "https://github.com/WorkuFikadu/busa-gonofa-oromia",
+      caseStudy: {
+        problem: "Coordinating emergency aid, regional warehouse stock, and multi-tier humanitarian reporting requires deterministic data tracking under tight deadlines.",
+        architecture: "Strictly typed TypeScript + React frontend backed by modular Node.js services for inventory allocation and regional dispatch reporting.",
+        securityAndScale: "Compile-time type safety across domain models, regional hierarchy permissions, and auditable logistics dispatch histories.",
+        impact: "Streamlines end-to-end transparency from central supply allocation to local community delivery."
+      }
     },
     {
       id: "first-mobile-app",
@@ -294,7 +318,13 @@ export const personalData = {
         "Clean architecture pattern following MVVM and Kotlin Coroutines"
       ],
       techStack: ["Kotlin", "Jetpack Compose", "Material 3", "Android SDK"],
-      githubUrl: "https://github.com/WorkuFikadu/first-mobile-app"
+      githubUrl: "https://github.com/WorkuFikadu/first-mobile-app",
+      caseStudy: {
+        problem: "Legacy XML Android layouts create boilerplate, state desync bugs, and sluggish UI updates on mid-range Android hardware.",
+        architecture: "Unidirectional data flow using Kotlin Coroutines, StateFlow ViewModels (MVVM), and composable Material 3 UI screens.",
+        securityAndScale: "Lifecycle-aware asynchronous execution preventing memory leaks and delivering smooth 60fps native rendering.",
+        impact: "Blueprint for native Android apps serving Ethiopia's Android-first mobile market."
+      }
     },
     {
       id: "flutter-lab-class",
@@ -307,7 +337,13 @@ export const personalData = {
         "Optimized 60fps animations and low battery consumption"
       ],
       techStack: ["Flutter", "Dart", "Cross-Platform", "Mobile UX"],
-      githubUrl: "https://github.com/WorkuFikadu/Flutter_lab_class"
+      githubUrl: "https://github.com/WorkuFikadu/Flutter_lab_class",
+      caseStudy: {
+        problem: "Maintaining separate Android and iOS codebases doubles engineering time and creates inconsistent UX for growing startups.",
+        architecture: "Single Dart/Flutter codebase structured around Provider/BLoC reactive streams and reusable adaptive widget components.",
+        securityAndScale: "Predictable state transitions, offline-ready async stream handling, and fast compilation to native ARM code.",
+        impact: "Enables businesses to launch simultaneously on Play Store and App Store from one unified codebase."
+      }
     },
     {
       id: "ifa-bula-kebele",
@@ -320,7 +356,13 @@ export const personalData = {
         "Administrative authorization controls"
       ],
       techStack: ["JavaScript", "Full-Stack", "REST APIs"],
-      githubUrl: "https://github.com/WorkuFikadu/ifa-bula-kebele-management"
+      githubUrl: "https://github.com/WorkuFikadu/ifa-bula-kebele-management",
+      caseStudy: {
+        problem: "Local residents lacked visibility into service request status and had to visit kebele offices repeatedly for verification updates.",
+        architecture: "Full-stack JavaScript portal integrating citizen registration forms, request ticketing queues, and public noticeboards.",
+        securityAndScale: "Role-gated administrative approvals and structured citizen verification records.",
+        impact: "Brings transparent, repeatable digital workflows to neighborhood-level governance."
+      }
     },
     {
       id: "church-website",
@@ -333,7 +375,13 @@ export const personalData = {
         "Multilingual content accessibility"
       ],
       techStack: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
-      githubUrl: "https://github.com/WorkuFikadu/jimma-hiwot-berhan-church-website."
+      githubUrl: "https://github.com/WorkuFikadu/jimma-hiwot-berhan-church-website.",
+      caseStudy: {
+        problem: "Community members needed a centralized hub accessible from mobile phones to watch/listen to sermons and follow weekly schedules.",
+        architecture: "Lightweight semantic HTML5, responsive CSS3 grid layout, and vanilla JavaScript interactive media & schedule views.",
+        securityAndScale: "Fast-loading static architecture optimized for low-bandwidth mobile connections.",
+        impact: "Connects local and diaspora members through accessible multilingual schedules and sermon archives."
+      }
     },
     {
       id: "kanenus-portfolio",
@@ -346,7 +394,13 @@ export const personalData = {
         "Interactive micro-interactions and responsive navigation"
       ],
       techStack: ["TypeScript", "React", "CSS Modules"],
-      githubUrl: "https://github.com/WorkuFikadu/kanenus-portfolio"
+      githubUrl: "https://github.com/WorkuFikadu/kanenus-portfolio",
+      caseStudy: {
+        problem: "Developer showcase templates often ship bloated dependencies, weak typing, and sluggish mobile rendering.",
+        architecture: "Modular React + TypeScript component library styled via scoped CSS Modules and consistent design tokens.",
+        securityAndScale: "Zero-runtime-overhead static typing, tree-shaken bundles, and high Lighthouse performance metrics.",
+        impact: "Reusable frontend foundation for high-converting personal and agency web presences."
+      }
     }
   ],
 

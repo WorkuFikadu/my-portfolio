@@ -1,20 +1,25 @@
 import React from 'react';
 import { personalData } from '../portfolioData';
-import { Compass, Target, BookOpen, GraduationCap, Languages, Sparkles } from 'lucide-react';
+import { Compass, Target, BookOpen, Languages, Sparkles } from 'lucide-react';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useLanguage } from '../context/languageStore';
 
 export default function About() {
+  const { t, lang } = useLanguage();
+
   return (
     <section id="about" className="section-padding about-section">
       <div className="container">
-        <div className="section-header text-center">
+        <div className="section-header text-center" dir={lang === 'ar' ? 'rtl' : 'ltr'}>
           <div className="badge-chip">
             <Compass size={16} />
-            <span>My Background & Journey</span>
+            <span>{t.about.badge}</span>
           </div>
-          <h2 className="section-title">A Journey Shaped by Language & Engineering</h2>
-          <p className="section-subtitle">
-            From early schooling in Goro and Addis Ababa to leading development squads at Goldman Tech PLC and engineering algorithms at Jimma University.
-          </p>
+          <h2 className="section-title">{t.about.title}</h2>
+          <p className="section-subtitle">{t.about.subtitle}</p>
+          <div className="about-lang-center">
+            <LanguageSwitcher />
+          </div>
         </div>
 
         <div className="about-grid">
@@ -53,7 +58,7 @@ export default function About() {
                 <div className="icon-wrapper primary-glow">
                   <Target size={24} />
                 </div>
-                <h3>My Vision</h3>
+                <h3>{t.about.visionTitle}</h3>
               </div>
               <blockquote className="quote-text">
                 "{personalData.vision}"
@@ -70,7 +75,7 @@ export default function About() {
                 <div className="icon-wrapper green-glow">
                   <BookOpen size={24} />
                 </div>
-                <h3>My Mission</h3>
+                <h3>{t.about.missionTitle}</h3>
               </div>
               <ul className="mission-list">
                 {personalData.mission.map((item, idx) => (

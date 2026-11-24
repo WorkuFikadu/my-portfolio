@@ -1,6 +1,6 @@
 import React from 'react';
 import { personalData } from '../portfolioData';
-import { ArrowRight, Code2, Globe, ShieldCheck, Sparkles, Send, Award, Download } from 'lucide-react';
+import { ArrowRight, Code2, Globe, ShieldCheck, Send, Award } from 'lucide-react';
 
 export default function Hero() {
   return (

@@ -1,7 +1,9 @@
 import React from 'react';
 import { personalData } from '../portfolioData';
-import { Heart, ArrowUp } from 'lucide-react';
+import { ArrowUp } from 'lucide-react';
 import { GithubIcon, LinkedinIcon, InstagramIcon } from './SocialIcons';
+
+const CURRENT_YEAR = new Date().getFullYear();
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -36,7 +38,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <p>© {new Date().getFullYear()} {personalData.name}. All rights reserved.</p>
+          <p>© {CURRENT_YEAR} {personalData.name}. All rights reserved.</p>
           <p className="built-with">
             Built with React.js & modern engineering standards.
           </p>

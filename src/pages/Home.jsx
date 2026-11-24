@@ -1,27 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { personalData } from '../portfolioData';
-import { ArrowRight, Code2, Globe, ShieldCheck, Award, Send, CheckCircle2, Terminal, Sparkles, Rocket } from 'lucide-react';
+import { ArrowRight, Globe, ShieldCheck, Award, Send, Terminal, Sparkles, Calculator } from 'lucide-react';
 import TiltCard from '../components/TiltCard';
 import TypewriterText from '../components/TypewriterText';
 import InstallAppBtn from '../components/InstallAppBtn';
 import ResumeModal from '../components/ResumeModal';
 import TechSolutionsShowcase from '../components/TechSolutionsShowcase';
+import LanguageSwitcher from '../components/LanguageSwitcher';
+import { useLanguage } from '../context/languageStore';
 
 export default function Home() {
+  const { t, lang } = useLanguage();
+
   return (
     <div className="page-animate">
       <section className="hero-section">
         <div className="hero-background-glow"></div>
         <div className="container hero-container">
-          <div className="hero-content">
-            <div className="badge-chip">
-              <span className="pulsing-dot"></span>
-              <span>Available for Full-Time, Lead & Freelance Roles</span>
+          <div className="hero-content" dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+            <div className="hero-top-controls">
+              <div className="badge-chip mb-0">
+                <span className="pulsing-dot"></span>
+                <span>{t.hero.available}</span>
+              </div>
+              <LanguageSwitcher />
             </div>
 
             <h1 className="hero-title">
-              Hi, I'm <span className="gradient-text">{personalData.name}</span>
+              {t.hero.greetingPrefix} <span className="gradient-text">{personalData.name}</span>
             </h1>
 
             <div className="hero-role-block">
@@ -35,21 +42,25 @@ export default function Home() {
             </div>
 
             <p className="hero-description">
-              {personalData.bio} Dedicated to architecting high-performance systems, cross-platform applications, and elevating Ethiopia's tech presence.
+              {t.hero.bio}
             </p>
 
             <div className="hero-cta-group">
               <Link to="/projects" className="btn btn-primary">
-                <span>Explore Projects</span>
+                <span>{t.hero.exploreProjects}</span>
                 <ArrowRight size={18} />
               </Link>
               <Link to="/certificates" className="btn btn-secondary">
                 <Award size={18} />
-                <span>Certificates & Awards (5)</span>
+                <span>{t.hero.certsBtn}</span>
+              </Link>
+              <Link to="/services" className="btn btn-outline">
+                <Calculator size={18} />
+                <span>{t.hero.estimatorBtn}</span>
               </Link>
               <Link to="/contact" className="btn btn-outline">
                 <Send size={18} />
-                <span>Contact Worku</span>
+                <span>{t.hero.contactBtn}</span>
               </Link>
               <ResumeModal />
               <InstallAppBtn className="hero-app-btn" />
@@ -59,19 +70,19 @@ export default function Home() {
             <div className="hero-metrics-grid">
               <div className="metric-card">
                 <span className="metric-number">{personalData.experienceYears}</span>
-                <span className="metric-label">Years of Coding</span>
+                <span className="metric-label">{t.hero.yearsCoding}</span>
               </div>
               <div className="metric-card">
                 <span className="metric-number">{personalData.projectsCount}</span>
-                <span className="metric-label">Projects Built</span>
+                <span className="metric-label">{t.hero.projectsBuilt}</span>
               </div>
               <div className="metric-card">
                 <span className="metric-number">{personalData.languagesSpokenCount}</span>
-                <span className="metric-label">Languages Spoken</span>
+                <span className="metric-label">{t.hero.languagesSpoken}</span>
               </div>
               <div className="metric-card">
                 <span className="metric-number">2027</span>
-                <span className="metric-label">Graduation (JU)</span>
+                <span className="metric-label">{t.hero.gradLabel}</span>
               </div>
             </div>
           </div>

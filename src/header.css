@@ -514,8 +514,8 @@
 
 /* 6. Responsive Breakpoints */
 
-/* Standard laptops (1200px - 1419px): keep all 9 links crisp without crowding */
-@media (max-width: 1419px) and (min-width: 1200px) {
+/* Standard laptops (1200px - 1439px): keep all 9 links crisp without crowding */
+@media (max-width: 1439px) and (min-width: 1200px) {
   .navbar-dock-inner {
     gap: 0.5rem;
   }
@@ -619,4 +619,102 @@
   .brand-logo .brand-name {
     font-size: 0.82rem;
   }
+}
+
+/* 7. Multilingual Language Switcher Controls */
+.nav-lang-desktop {
+  display: none;
+}
+
+@media (min-width: 1360px) {
+  .nav-lang-desktop {
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+.nav-lang-cycle-btn {
+  height: 36px;
+  padding: 0 0.62rem;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  color: #cbd5e1;
+  font-size: 0.74rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.32rem;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.nav-lang-cycle-btn:hover {
+  background: rgba(56, 189, 248, 0.14);
+  border-color: rgba(56, 189, 248, 0.45);
+  color: #ffffff;
+}
+
+.lang-switcher-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.22rem;
+  padding: 0.22rem 0.32rem;
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+}
+
+.lang-group-icon {
+  color: #38bdf8;
+  margin: 0 0.2rem 0 0.25rem;
+  flex-shrink: 0;
+}
+
+.lang-pill-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: #94a3b8;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.22rem 0.52rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.lang-pill-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.lang-pill-btn.active {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: rgba(56, 189, 248, 0.4);
+  color: #7dd3fc;
+}
+
+.hero-top-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.2rem;
+}
+
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+
+.about-lang-center {
+  margin-top: 1.1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.mobile-lang-row {
+  display: flex;
+  justify-content: center;
 }

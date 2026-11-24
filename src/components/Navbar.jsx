@@ -5,11 +5,14 @@ import { personalData } from '../portfolioData';
 import { Menu, X, Sparkles, ArrowUpRight, Phone, Mail } from 'lucide-react';
 import InstallAppBtn from './InstallAppBtn';
 import CommandPalette from './CommandPalette';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useLanguage } from '../context/languageStore';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -88,7 +91,7 @@ export default function Navbar() {
                 className={({ isActive }) => `nav-dock-item ${isActive ? 'active-dock-item' : ''}`}
                 end={link.path === '/'}
               >
-                <span>{link.name}</span>
+                <span>{t.nav[link.name] || link.name}</span>
                 {link.badge && (
                   <span className="nav-badge-inline">{link.badge}</span>
                 )}
@@ -100,11 +103,14 @@ export default function Navbar() {
         {/* Action Controls */}
         <div className="nav-actions">
           <CommandPalette />
+          <div className="nav-lang-desktop">
+            <LanguageSwitcher compact={true} />
+          </div>
           <InstallAppBtn compact={true} />
 
           <Link to="/contact" className="nav-hire-btn">
             <Sparkles size={14} className="hire-sparkle-icon" />
-            <span>Hire Me</span>
+            <span>{t.nav.hireMe}</span>
             <ArrowUpRight size={14} className="hire-arrow-icon" />
           </Link>
 
@@ -160,7 +166,7 @@ export default function Navbar() {
                     className={({ isActive }) => `mobile-nav-item ${isActive ? 'active-mobile-link' : ''}`}
                     end={link.path === '/'}
                   >
-                    <span>{link.name}</span>
+                    <span>{t.nav[link.name] || link.name}</span>
                     {link.badge && (
                       <span className="mobile-nav-badge">{link.badge} Verified</span>
                     )}
@@ -170,6 +176,9 @@ export default function Navbar() {
             </ul>
 
             <div className="mobile-drawer-footer">
+              <div className="mobile-lang-row">
+                <LanguageSwitcher />
+              </div>
               <div className="mobile-contact-quick">
                 <a href={`tel:${personalData.contact.primaryPhone}`} className="mobile-quick-btn">
                   <Phone size={15} />

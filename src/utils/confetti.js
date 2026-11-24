@@ -1,4 +1,3 @@
-import { personalData } from '../portfolioData';
 import confetti from 'canvas-confetti';
 
 export function fireConfetti() {

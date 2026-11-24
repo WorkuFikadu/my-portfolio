@@ -3,30 +3,40 @@ import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import {
   Search, Terminal, Home, User, Briefcase, Award,
-  Code, FolderGit2, Mail, Phone, ExternalLink, X, ArrowRight
+  Code, FolderGit2, Mail, Phone, ExternalLink, X, ArrowRight, Calculator, Languages
 } from 'lucide-react';
 import { personalData } from '../portfolioData';
+import { LANGUAGES } from '../utils/translations';
+import { useLanguage } from '../context/languageStore';
 
 export default function CommandPalette() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [activeIndex, setActiveIndex] = useState(0);
   const navigate = useNavigate();
+  const { setLang, t } = useLanguage();
 
   const commands = useMemo(() => [
     { title: 'Go to Home', section: 'Navigation', icon: <Home size={16} />, action: () => { navigate('/'); setOpen(false); } },
     { title: 'View About & Story', section: 'Navigation', icon: <User size={16} />, action: () => { navigate('/about'); setOpen(false); } },
     { title: 'Explore Services (ERP, Mobile, E-Commerce)', section: 'Navigation', icon: <Briefcase size={16} />, action: () => { navigate('/services'); setOpen(false); } },
+    { title: 'Open Project Cost & Timeline Estimator', section: 'Tools', icon: <Calculator size={16} />, action: () => { navigate('/services'); setOpen(false); setTimeout(() => document.getElementById('project-estimator')?.scrollIntoView({ behavior: 'smooth' }), 150); } },
     { title: 'View Leadership @ Goldman Tech', section: 'Navigation', icon: <Terminal size={16} />, action: () => { navigate('/leadership'); setOpen(false); } },
     { title: `Inspect ${personalData.certificates.length} Verified Certificates`, section: 'Navigation', icon: <Award size={16} />, action: () => { navigate('/certificates'); setOpen(false); } },
     { title: 'View Skills & Tech Stack', section: 'Navigation', icon: <Code size={16} />, action: () => { navigate('/skills'); setOpen(false); } },
     { title: 'Browse GitHub Projects (PDMS, Kebele, Banking)', section: 'Navigation', icon: <FolderGit2 size={16} />, action: () => { navigate('/projects'); setOpen(false); } },
     { title: 'Get In Touch / Contact', section: 'Navigation', icon: <Mail size={16} />, action: () => { navigate('/contact'); setOpen(false); } },
+    ...LANGUAGES.map((l) => ({
+      title: `Switch Language: ${l.label} (${l.short})`,
+      section: 'Language',
+      icon: <Languages size={16} />,
+      action: () => { setLang(l.code); setOpen(false); }
+    })),
     { title: `Call Primary Phone (${personalData.contact.primaryPhone})`, section: 'Quick Action', icon: <Phone size={16} />, action: () => { window.location.href = `tel:${personalData.contact.primaryPhone}`; setOpen(false); } },
     { title: `Send Email (${personalData.contact.email})`, section: 'Quick Action', icon: <Mail size={16} />, action: () => { window.location.href = `mailto:${personalData.contact.email}`; setOpen(false); } },
     { title: 'Open GitHub Profile', section: 'External', icon: <ExternalLink size={16} />, action: () => { window.open(personalData.contact.github, '_blank', 'noopener,noreferrer'); setOpen(false); } },
     { title: 'Open LinkedIn Profile', section: 'External', icon: <ExternalLink size={16} />, action: () => { window.open(personalData.contact.linkedin, '_blank', 'noopener,noreferrer'); setOpen(false); } }
-  ], [navigate]);
+  ], [navigate, setLang]);
 
   const filteredCommands = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -105,7 +115,7 @@ export default function CommandPalette() {
         aria-label="Open Command Palette"
       >
         <Search size={14} />
-        <span className="cmd-pill-text">Search...</span>
+        <span className="cmd-pill-text">{t.nav.search}</span>
         <kbd className="cmd-pill-kbd">Ctrl K</kbd>
       </button>
 

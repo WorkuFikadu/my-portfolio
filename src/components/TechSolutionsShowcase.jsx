@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { 
   Smartphone, 
-  Globe, 
   Server, 
   Database, 
   ShieldCheck, 
@@ -11,9 +10,7 @@ import {
   CheckCircle2, 
   Layers, 
   ArrowRight, 
-  Lock, 
   Code2, 
-  CloudRain, 
   Play
 } from 'lucide-react';
 

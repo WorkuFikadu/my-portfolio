@@ -1,21 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { personalData } from '../portfolioData';
-import { FolderGit2, ExternalLink, CheckCircle2, Search, Filter } from 'lucide-react';
+import { FolderGit2, ExternalLink, CheckCircle2, Search, BookOpen } from 'lucide-react';
 import { GithubIcon } from '../components/SocialIcons';
 import TiltCard from '../components/TiltCard';
+import ProjectCaseStudyModal from '../components/ProjectCaseStudyModal';
+import GitHubStatsBar from '../components/GitHubStatsBar';
 
 export default function ProjectsPage() {
   const { projects } = personalData;
   const [filter, setFilter] = useState('All');
   const [search, setSearch] = useState('');
+  const [selectedProject, setSelectedProject] = useState(null);
 
-  const categories = ['All', 'Healthcare & Digital ID', 'Government ICT & Records', 'Fintech & Banking', 'Enterprise & Humanitarian', 'Mobile Application', 'Frontend Architecture'];
+  const categories = useMemo(
+    () => ['All', ...new Set(projects.map((p) => p.category))],
+    [projects]
+  );
 
   const filteredProjects = projects.filter((p) => {
     const matchesFilter = filter === 'All' || p.category === filter;
-    const matchesSearch = p.title.toLowerCase().includes(search.toLowerCase()) ||
-                          p.description.toLowerCase().includes(search.toLowerCase()) ||
-                          p.techStack.some(t => t.toLowerCase().includes(search.toLowerCase()));
+    const q = search.toLowerCase();
+    const matchesSearch =
+      p.title.toLowerCase().includes(q) ||
+      p.description.toLowerCase().includes(q) ||
+      p.techStack.some((t) => t.toLowerCase().includes(q));
     return matchesFilter && matchesSearch;
   });
 
@@ -26,21 +34,23 @@ export default function ProjectsPage() {
           <div className="section-header text-center">
             <div className="badge-chip">
               <FolderGit2 size={16} />
-              <span>Production Code & Open Source</span>
+              <span>Production Code &amp; Open Source</span>
             </div>
-            <h1 className="section-title">Verified GitHub Projects & Systems</h1>
+            <h1 className="section-title">Verified GitHub Projects &amp; Systems</h1>
             <p className="section-subtitle">
               Real-world systems, government digitizations, national healthcare frameworks, fintech simulators, and mobile applications from my GitHub profile (<strong>@WorkuFikadu</strong>).
             </p>
           </div>
 
+          <GitHubStatsBar />
+
           {/* Search and Category Filter Bar */}
           <div className="project-controls-bar">
             <div className="project-search-box">
               <Search size={18} className="search-icon" />
-              <input 
-                type="text" 
-                placeholder="Search projects by name, technology (e.g. React, Kotlin, PHP, Fayda)..." 
+              <input
+                type="text"
+                placeholder="Search projects by name, technology (e.g. React, Kotlin, PHP, Fayda)..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
@@ -50,6 +60,7 @@ export default function ProjectsPage() {
               {categories.map((cat) => (
                 <button
                   key={cat}
+                  type="button"
                   className={`filter-btn ${filter === cat ? 'active' : ''}`}
                   onClick={() => setFilter(cat)}
                 >
@@ -68,10 +79,10 @@ export default function ProjectsPage() {
                     <span className="project-category-tag">{project.category}</span>
                     <div className="project-header-links">
                       {project.githubUrl && (
-                        <a 
-                          href={project.githubUrl} 
-                          target="_blank" 
-                          rel="noopener noreferrer" 
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="icon-link-btn"
                           aria-label={`View ${project.title} on GitHub`}
                           title="View GitHub Repository"
@@ -80,10 +91,10 @@ export default function ProjectsPage() {
                         </a>
                       )}
                       {project.demoUrl && (
-                        <a 
-                          href={project.demoUrl} 
-                          target="_blank" 
-                          rel="noopener noreferrer" 
+                        <a
+                          href={project.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="icon-link-btn primary"
                           aria-label="Live Demo"
                           title="View Live Demo"
@@ -119,16 +130,24 @@ export default function ProjectsPage() {
                     </div>
 
                     <div className="project-actions-row">
+                      <button
+                        type="button"
+                        onClick={() => setSelectedProject(project)}
+                        className="btn btn-sm btn-primary"
+                      >
+                        <BookOpen size={14} />
+                        <span>Case Study</span>
+                      </button>
                       {project.githubUrl && (
-                        <a 
-                          href={project.githubUrl} 
-                          target="_blank" 
-                          rel="noopener noreferrer" 
-                          className="btn btn-sm btn-outline btn-block"
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn-sm btn-outline"
                         >
                           <GithubIcon size={14} />
-                          <span>View on GitHub</span>
-                          <ExternalLink size={13} className="ml-auto" />
+                          <span>GitHub</span>
+                          <ExternalLink size={13} />
                         </a>
                       )}
                     </div>
@@ -143,6 +162,11 @@ export default function ProjectsPage() {
               <p>No projects match your current search criteria. Try a different keyword!</p>
             </div>
           )}
+
+          <ProjectCaseStudyModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
         </div>
       </section>
     </div>

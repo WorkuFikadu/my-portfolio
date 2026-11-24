@@ -20,9 +20,11 @@ export default function TypewriterText() {
     }
 
     if (subIndex === 0 && isDeleting) {
-      setIsDeleting(false);
-      setIndex((prev) => (prev + 1) % words.length);
-      return;
+      const timeout = setTimeout(() => {
+        setIsDeleting(false);
+        setIndex((prev) => (prev + 1) % words.length);
+      }, 40);
+      return () => clearTimeout(timeout);
     }
 
     const timeout = setTimeout(() => {

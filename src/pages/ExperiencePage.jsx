@@ -1,6 +1,5 @@
 import React from 'react';
-import { personalData } from '../portfolioData';
-import { Briefcase, Brain, Star, CheckCircle2, Award, Terminal, Code, Cpu } from 'lucide-react';
+import { Briefcase, Brain, Star, Terminal, Code, Cpu } from 'lucide-react';
 
 export default function ExperiencePage() {
   const practicalTraining = [
